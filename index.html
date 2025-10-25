@@ -194,6 +194,12 @@
         transform: translateY(-5px);
       }
 
+      /* Style for the completed/strikethrough item */
+      .plans-list li s {
+        color: #8a8a8a;
+        text-decoration-color: #999;
+      }
+
       .plans-list li:last-child {
         border-bottom: none;
       }
@@ -287,11 +293,11 @@
         <div class="container">
           <div class="stat-item fade-in">
             <p class="stat-number" data-target="12.4">0</p>
-            <p class="stat-label">Thousand Images!</p>
+            <p class="stat-label">K Images!</p>
           </div>
           <div class="stat-item fade-in">
             <p class="stat-number" data-target="38">0</p>
-            <p class="stat-label">Kilometers!</p>
+            <p class="stat-label">Kilometers</p>
           </div>
           <div class="stat-item fade-in">
             <p class="stat-number live">Live</p>
@@ -305,13 +311,15 @@
         <div class="container">
           <h2 class="fade-in">Counties We've Covered</h2>
           <p class="fade-in">
-            We're just getting started! Our first major project has been to
-            provide extensive coverage in Montgomery County, Texas.
+            We are actively mapping key areas across Southeast Texas. Our
+            coverage includes established routes in Montgomery County and our
+            current operations are focused on expanding into Harris County!
           </p>
           <div class="coverage-map fade-in">
+            <!-- THIS IMAGE SOURCE HAS BEEN UPDATED -->
             <img
-              src="https://8upload.com/image/68fbf6504dc69/MapChart_Map.png"
-              alt="Map showing coverage in Montgomery County, Texas"
+              src="https://8upload.com/image/68fd3cb91b9cf/MapChart_Map__1_.png"
+              alt="Map showing coverage in Montgomery County and Walker County, Texas"
             />
           </div>
         </div>
@@ -323,7 +331,8 @@
           <h2 class="fade-in">Future Plans</h2>
           <ul class="plans-list">
             <li class="fade-in">More Coverage (Obviously)</li>
-            <li class="fade-in">Coverage in another county</li>
+            <!-- THIS ITEM NOW HAS A STRIKETHROUGH -->
+            <li class="fade-in"><s>Coverage in another county</s></li>
             <li class="fade-in">Coverage in another STATE..</li>
             <li class="fade-in">
               Get captured by the Google car while capturing
