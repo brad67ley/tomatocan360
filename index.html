@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tomato Can 360 - Mapping the Unmapped</title>
+    <style>
+      /* --- Google Font Import --- */
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+      /* --- CSS Variables for Easy Theming --- */
+      :root {
+        --primary-color: #ff6347; /* Tomato Red */
+        --dark-color: #2c3e50;
+        --light-color: #ecf0f1;
+        --background-color: #ffffff;
+        --container-width: 1100px;
+      }
+
+      /* --- Global & Reset Styles --- */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        line-height: 1.6;
+        background-color: var(--background-color);
+        color: var(--dark-color);
+      }
+
+      .container {
+        max-width: var(--container-width);
+        margin: auto;
+        overflow: hidden;
+        padding: 0 2rem;
+      }
+
+      h1,
+      h2 {
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      section {
+        padding: 5rem 0;
+        overflow: hidden; /* Prevents scrollbars during animations */
+      }
+
+      /* --- Header & Navigation --- */
+      .main-header {
+        background: rgba(44, 62, 80, 0.9);
+        color: white;
+        padding: 1rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+      }
+
+      .main-header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .main-header .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary-color);
+      }
+
+      .main-nav ul {
+        list-style: none;
+        display: flex;
+      }
+
+      .main-nav a {
+        color: white;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        transition: color 0.3s ease;
+      }
+
+      .main-nav a:hover {
+        color: var(--primary-color);
+      }
+
+      /* --- Hero Section --- */
+      .hero {
+        background: linear-gradient(
+          135deg,
+          var(--light-color) 0%,
+          #ffffff 100%
+        );
+        text-align: center;
+        padding: 6rem 0;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        color: var(--dark-color);
+      }
+
+      .hero h1 span {
+        color: var(--primary-color);
+      }
+
+      .hero p {
+        font-size: 1.25rem;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      /* --- Stats Section --- */
+      .stats {
+        background: var(--primary-color);
+        color: white;
+      }
+
+      .stats .container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        text-align: center;
+      }
+
+      .stat-item .stat-number {
+        font-size: 3.5rem;
+        font-weight: 700;
+      }
+
+      .stat-item .stat-label {
+        font-size: 1.2rem;
+        font-weight: 400;
+      }
+
+      /* --- Coverage Section --- */
+      .coverage {
+        text-align: center;
+      }
+
+      .coverage-map {
+        max-width: 600px;
+        margin: 2.5rem auto 0;
+      }
+
+      .coverage-map img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      /* --- Future Plans Section --- */
+      .future-plans {
+        background: linear-gradient(
+          135deg,
+          #ffffff 0%,
+          var(--light-color) 100%
+        );
+      }
+
+      .future-plans .container {
+        max-width: 800px;
+      }
+
+      .future-plans h2 {
+        text-align: center;
+        margin-bottom: 2.5rem;
+      }
+
+      .plans-list {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .plans-list li {
+        font-size: 1.2rem;
+        padding: 1.25rem 0 1.25rem 3.5rem;
+        position: relative;
+        border-bottom: 1px solid #dcdcdc;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .plans-list li:hover {
+        transform: translateY(-5px);
+      }
+
+      .plans-list li:last-child {
+        border-bottom: none;
+      }
+
+      .plans-list li::before {
+        content: "➤";
+        position: absolute;
+        left: 0.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--primary-color);
+        font-weight: 700;
+        font-size: 1.8rem;
+        transition: transform 0.3s ease;
+      }
+
+      .plans-list li:hover::before {
+        transform: translateY(-50%) scale(1.2);
+      }
+
+      /* --- Footer --- */
+      .main-footer {
+        background: var(--dark-color);
+        color: white;
+        text-align: center;
+        padding: 2.5rem 0;
+      }
+
+      /* --- Animation Classes --- */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+
+      .fade-in.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* --- Responsive Design --- */
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2.5rem !important;
+        }
+        .hero p {
+          font-size: 1.1rem;
+        }
+
+        .stats .container {
+          grid-template-columns: 1fr;
+        }
+
+        .main-header .container {
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="main-header">
+      <div class="container">
+        <div class="logo">Tomato Can 360</div>
+        <nav class="main-nav">
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#coverage">Coverage</a></li>
+            <li><a href="#plans">Future Plans</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="hero" id="about">
+        <div class="container">
+          <h1 class="fade-in">Putting Your World <span>on the Map</span>.</h1>
+          <p class="fade-in">
+            Tomato Can 360 is dedicated to capturing and uploading high-quality
+            360° street view imagery. We focus on areas missed by major
+            providers and keep existing coverage fresh and up-to-date.
+          </p>
+        </div>
+      </section>
+
+      <!-- Stats Section -->
+      <section class="stats" id="stats">
+        <div class="container">
+          <div class="stat-item fade-in">
+            <p class="stat-number" data-target="12.4">0</p>
+            <p class="stat-label">Thousand Images!</p>
+          </div>
+          <div class="stat-item fade-in">
+            <p class="stat-number" data-target="38">0</p>
+            <p class="stat-label">Kilometers!</p>
+          </div>
+          <div class="stat-item fade-in">
+            <p class="stat-number live">Live</p>
+            <p class="stat-label">On Mapillary and Google!</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Counties We've Covered Section -->
+      <section class="coverage" id="coverage">
+        <div class="container">
+          <h2 class="fade-in">Counties We've Covered</h2>
+          <p class="fade-in">
+            We're just getting started! Our first major project has been to
+            provide extensive coverage in Montgomery County, Texas.
+          </p>
+          <div class="coverage-map fade-in">
+            <img
+              src="https://8upload.com/image/68fbf6504dc69/MapChart_Map.png"
+              alt="Map showing coverage in Montgomery County, Texas"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Future Plans Section -->
+      <section class="future-plans" id="plans">
+        <div class="container">
+          <h2 class="fade-in">Future Plans</h2>
+          <ul class="plans-list">
+            <li class="fade-in">More Coverage (Obviously)</li>
+            <li class="fade-in">Coverage in another county</li>
+            <li class="fade-in">Coverage in another STATE..</li>
+            <li class="fade-in">
+              Get captured by the Google car while capturing
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+      <div class="container">
+        <p>&copy; 2025 Tomato Can 360. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <!-- JAVASCRIPT for Animations -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // --- FADE-IN ON SCROLL ANIMATION ---
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry, index) => {
+              if (entry.isIntersecting) {
+                // Add a delay to each item in a list for a staggered effect
+                const delay = entry.target.closest(".plans-list")
+                  ? index * 100
+                  : 0;
+                setTimeout(() => {
+                  entry.target.classList.add("is-visible");
+                }, delay);
+              }
+            });
+          },
+          {
+            threshold: 0.1, // Trigger when 10% of the element is visible
+          }
+        );
+
+        const targets = document.querySelectorAll(".fade-in");
+        targets.forEach((target) => observer.observe(target));
+
+        // --- STATS COUNTER ANIMATION ---
+        const statsSection = document.getElementById("stats");
+        let hasAnimated = false; // Flag to ensure animation runs only once
+
+        const countUp = () => {
+          const counters = document.querySelectorAll(".stat-number:not(.live)");
+          const speed = 200; // The lower the number, the faster the count
+
+          counters.forEach((counter) => {
+            const target = +counter.getAttribute("data-target");
+
+            const updateCount = () => {
+              const count = +counter.innerText;
+              const increment = target / speed;
+
+              if (count < target) {
+                let newCount = count + increment;
+                // Check if the target is a float (has a decimal)
+                if (target.toString().includes(".")) {
+                  counter.innerText = newCount.toFixed(1);
+                } else {
+                  counter.innerText = Math.ceil(newCount);
+                }
+                setTimeout(updateCount, 15);
+              } else {
+                counter.innerText = target;
+              }
+            };
+            updateCount();
+          });
+          hasAnimated = true; // Set flag to true after animating
+        };
+
+        const statsObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting && !hasAnimated) {
+                countUp();
+              }
+            });
+          },
+          {
+            threshold: 0.5, // Trigger when 50% of the stats section is visible
+          }
+        );
+
+        statsObserver.observe(statsSection);
+      });
+    </script>
+  </body>
+</html>
