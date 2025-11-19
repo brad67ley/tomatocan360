@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tomato Can 90 - The Narrow View</title>
+    <style>
+      /* --- Font: Courier Prime/Monospace for that "Budget/Raw" feel --- */
+      @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+
+      /* --- CSS Variables (BLUE THEME) --- */
+      :root {
+        --primary-color: #3498db; /* Budget Blue */
+        --dark-color: #222;
+        --light-color: #f4f4f4;
+        --background-color: #ffffff;
+        --container-width: 1100px;
+      }
+
+      /* --- Global Styles --- */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: 'Courier Prime', monospace; 
+        line-height: 1.6;
+        background-color: var(--background-color);
+        color: var(--dark-color);
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: var(--container-width);
+        margin: auto;
+        overflow: hidden;
+        padding: 0 2rem;
+      }
+
+      h1, h2 {
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      section {
+        padding: 5rem 0;
+      }
+
+      /* --- Header --- */
+      .main-header {
+        background: #fff;
+        color: var(--dark-color);
+        padding: 1rem 0;
+        border-bottom: 2px solid var(--primary-color);
+      }
+
+      .main-header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .main-header .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+      }
+
+      .main-nav ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      }
+
+      .main-nav a {
+        color: var(--dark-color);
+        text-decoration: none;
+        font-weight: 700;
+      }
+      
+      /* Link back to main site */
+      .main-nav .back-link {
+        color: #ff6347; /* Tomato Red */
+        border: 1px solid #ff6347;
+        padding: 6px 12px;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+      }
+
+      .main-nav .back-link:hover {
+        background-color: #ff6347;
+        color: white;
+      }
+
+      /* --- Hero Section --- */
+      .hero {
+        text-align: center;
+        padding: 8rem 0;
+        background-color: #f0f8ff; /* Light AliceBlue */
+        flex: 1; /* Pushes footer down */
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero span {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 0 10px;
+      }
+
+      /* --- Stats Section --- */
+      .stats {
+        background: var(--dark-color);
+        color: var(--primary-color);
+        padding: 4rem 0;
+        font-family: monospace;
+      }
+
+      .stats .container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        text-align: center;
+      }
+
+      .stat-number {
+        font-size: 3rem;
+        font-weight: 700;
+        color: white;
+      }
+
+      .stat-label {
+        color: var(--primary-color);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      /* --- Footer --- */
+      footer {
+        text-align: center;
+        padding: 2rem;
+        font-size: 0.8rem;
+        background: #eee;
+        border-top: 1px solid #ddd;
+      }
+
+      /* --- Responsive --- */
+      @media (max-width: 768px) {
+        .stats .container { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    
+    <header class="main-header">
+      <div class="container">
+        <div class="logo">TomatoCan90</div>
+        <nav class="main-nav">
+          <ul>
+            <!-- Only the back button remains -->
+            <li><a href="index.html" class="back-link">← Back to 360</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="container">
+        <h1>The <span>90°</span> Experience</h1>
+        <p>
+          An offspring of TomatoCan360. <br>
+          Instead of 360 photos, it's just... 90. <br>
+          Same roads, less peripheral vision.
+        </p>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="container">
+        <div>
+          <div class="stat-number">1.8k</div>
+          <div class="stat-label">Standard Images</div>
+        </div>
+        <div>
+          <div class="stat-number">7+</div>
+          <div class="stat-label">Miles (11km)</div>
+        </div>
+        <div>
+          <div class="stat-number">Live</div>
+          <div class="stat-label">On Mapillary</div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>TomatoCan90</p>
+    </footer>
+
+  </body>
+</html>

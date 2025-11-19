@@ -81,6 +81,7 @@
       .main-nav ul {
         list-style: none;
         display: flex;
+        align-items: center;
       }
 
       .main-nav a {
@@ -93,6 +94,23 @@
 
       .main-nav a:hover {
         color: var(--primary-color);
+      }
+
+      /* SPECIAL BUTTON FOR TC90 LINK */
+      .nav-btn-blue {
+        background-color: #3498db;
+        border-radius: 20px;
+        padding: 0.4rem 1.2rem !important;
+        font-size: 0.9rem;
+        margin-left: 15px;
+        transition: all 0.3s ease !important;
+      }
+
+      .nav-btn-blue:hover {
+        background-color: #2980b9;
+        color: white !important;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(52, 152, 219, 0.4);
       }
 
       /* --- Hero Section --- */
@@ -136,14 +154,14 @@
         grid-template-columns: repeat(3, 1fr);
         gap: 2rem;
         text-align: center;
-        align-items: flex-start; /* Changed to flex-start so elements align at top */
+        align-items: flex-start;
       }
 
       .stat-item {
         position: relative;
       }
 
-      /* Divider line between stats on desktop */
+      /* Desktop Divider */
       .stat-item:not(:last-child)::after {
         content: "";
         position: absolute;
@@ -156,14 +174,15 @@
       }
 
       .stat-wrapper {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
       }
 
       .stat-number {
         font-size: 4rem;
         font-weight: 700;
         line-height: 1;
-        display: inline-block;
         text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
       }
 
@@ -184,17 +203,16 @@
         opacity: 0.9;
       }
 
-      /* New Style for the "Growing" text */
       .stat-growing {
         font-size: 0.9rem;
         font-weight: 400;
         font-style: italic;
-        color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
+        color: rgba(255, 255, 255, 0.8);
         margin-top: 0.2rem;
-        animation: pulse 2s infinite;
+        animation: text-pulse 2s infinite;
       }
 
-      @keyframes pulse {
+      @keyframes text-pulse {
         0% {
           opacity: 0.6;
         }
@@ -206,6 +224,34 @@
         }
       }
 
+      /* PULSING DOT ANIMATION */
+      .pulsing-dot {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        background-color: white;
+        border-radius: 50%;
+        margin-right: 12px;
+        position: relative;
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+        animation: pulse-ring 2s infinite;
+      }
+
+      @keyframes pulse-ring {
+        0% {
+          transform: scale(0.95);
+          box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+        }
+        70% {
+          transform: scale(1);
+          box-shadow: 0 0 0 15px rgba(255, 255, 255, 0);
+        }
+        100% {
+          transform: scale(0.95);
+          box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+        }
+      }
+
       /* --- Coverage Section --- */
       .coverage {
         text-align: center;
@@ -214,6 +260,8 @@
       .coverage-map {
         max-width: 600px;
         margin: 2.5rem auto 0;
+        perspective: 1000px;
+        transform-style: preserve-3d;
       }
 
       .coverage-map img {
@@ -221,11 +269,8 @@
         height: auto;
         border-radius: 12px;
         box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-        transition: transform 0.3s ease;
-      }
-
-      .coverage-map img:hover {
-        transform: scale(1.02);
+        transition: transform 0.1s ease-out;
+        will-change: transform;
       }
 
       /* --- Future Plans Section --- */
@@ -315,7 +360,6 @@
           gap: 3rem;
         }
 
-        /* Remove divider on mobile */
         .stat-item:not(:last-child)::after {
           display: none;
         }
@@ -323,6 +367,11 @@
         .main-header .container {
           flex-direction: column;
           gap: 0.5rem;
+        }
+
+        .nav-btn-blue {
+          margin-left: 0;
+          margin-top: 5px;
         }
       }
     </style>
@@ -336,6 +385,10 @@
             <li><a href="#about">About</a></li>
             <li><a href="#coverage">Coverage</a></li>
             <li><a href="#plans">Future Plans</a></li>
+            <!-- HERE IS THE NEW BUTTON -->
+            <li>
+              <a href="tomatocan90.html" class="nav-btn-blue">Visit TC90 ↗</a>
+            </li>
           </ul>
         </nav>
       </div>
@@ -357,14 +410,13 @@
       <!-- Stats Section -->
       <section class="stats" id="stats">
         <div class="container">
-          <!-- Item 1: Images (With the Growing Text) -->
+          <!-- Item 1: Images -->
           <div class="stat-item fade-in">
             <div class="stat-wrapper">
               <span class="stat-number" data-target="18.7">0</span>
               <span class="stat-suffix">k</span>
             </div>
             <p class="stat-label">Images Captured</p>
-            <!-- HERE IS THE NEW GROWING TEXT -->
             <p class="stat-growing">(and growing!)</p>
           </div>
 
@@ -380,6 +432,7 @@
           <!-- Item 3: Live Status -->
           <div class="stat-item fade-in">
             <div class="stat-wrapper">
+              <span class="pulsing-dot"></span>
               <span class="stat-number">Live</span>
             </div>
             <p class="stat-label">Google & Mapillary</p>
@@ -396,10 +449,13 @@
             established routes in Montgomery County, we are now extending
             coverage north into Walker County and south into Harris County!
           </p>
-          <div class="coverage-map fade-in">
+
+          <!-- 3D Map Tilt Container -->
+          <div class="coverage-map fade-in" id="map-container">
             <img
               src="https://i.imgur.com/QHxsTqf.png"
               alt="Map showing coverage in Montgomery County and Walker County, Texas"
+              id="map-image"
             />
           </div>
         </div>
@@ -429,7 +485,7 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        // Fade In Logic
+        // Fade In
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry, index) => {
@@ -449,7 +505,7 @@
           .querySelectorAll(".fade-in")
           .forEach((t) => observer.observe(t));
 
-        // Stats Counter Logic
+        // Stats Counter
         const statsSection = document.getElementById("stats");
         let hasAnimated = false;
 
@@ -458,7 +514,6 @@
           const speed = 100;
 
           counters.forEach((counter) => {
-            // Skip if it's text (like "Live")
             if (isNaN(parseFloat(counter.getAttribute("data-target")))) return;
 
             const target = +counter.getAttribute("data-target");
@@ -494,8 +549,24 @@
           },
           { threshold: 0.5 }
         );
-
         statsObserver.observe(statsSection);
+
+        // 3D Map Tilt
+        const mapContainer = document.getElementById("map-container");
+        const mapImg = document.getElementById("map-image");
+
+        mapContainer.addEventListener("mousemove", (e) => {
+          const rect = mapContainer.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const xRotation = -(((x - rect.width / 2) / rect.width) * 10);
+          const yRotation = ((y - rect.height / 2) / rect.height) * 10;
+          mapImg.style.transform = `scale(1.05) rotateX(${yRotation}deg) rotateY(${xRotation}deg)`;
+        });
+
+        mapContainer.addEventListener("mouseleave", () => {
+          mapImg.style.transform = `scale(1) rotateX(0) rotateY(0)`;
+        });
       });
     </script>
   </body>
