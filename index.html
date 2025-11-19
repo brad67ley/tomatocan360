@@ -8,7 +8,7 @@
       /* --- Google Font Import --- */
       @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 
-      /* --- CSS Variables for Easy Theming --- */
+      /* --- CSS Variables --- */
       :root {
         --primary-color: #ff6347; /* Tomato Red */
         --dark-color: #2c3e50;
@@ -17,7 +17,7 @@
         --container-width: 1100px;
       }
 
-      /* --- Global & Reset Styles --- */
+      /* --- Global Styles --- */
       * {
         box-sizing: border-box;
         margin: 0;
@@ -50,12 +50,12 @@
 
       section {
         padding: 5rem 0;
-        overflow: hidden; /* Prevents scrollbars during animations */
+        overflow: hidden;
       }
 
-      /* --- Header & Navigation --- */
+      /* --- Header --- */
       .main-header {
-        background: rgba(44, 62, 80, 0.9);
+        background: rgba(44, 62, 80, 0.95);
         color: white;
         padding: 1rem 0;
         position: sticky;
@@ -75,6 +75,7 @@
         font-size: 1.8rem;
         font-weight: 700;
         color: var(--primary-color);
+        letter-spacing: -1px;
       }
 
       .main-nav ul {
@@ -86,6 +87,7 @@
         color: white;
         text-decoration: none;
         padding: 0.5rem 1rem;
+        font-weight: 600;
         transition: color 0.3s ease;
       }
 
@@ -101,12 +103,13 @@
           #ffffff 100%
         );
         text-align: center;
-        padding: 6rem 0;
+        padding: 7rem 0 6rem;
       }
 
       .hero h1 {
         font-size: 3.5rem;
         color: var(--dark-color);
+        line-height: 1.2;
       }
 
       .hero h1 span {
@@ -116,13 +119,16 @@
       .hero p {
         font-size: 1.25rem;
         max-width: 700px;
-        margin: 0 auto;
+        margin: 1rem auto 0;
+        color: #555;
       }
 
       /* --- Stats Section --- */
       .stats {
         background: var(--primary-color);
         color: white;
+        padding: 4rem 0;
+        position: relative;
       }
 
       .stats .container {
@@ -130,16 +136,74 @@
         grid-template-columns: repeat(3, 1fr);
         gap: 2rem;
         text-align: center;
+        align-items: flex-start; /* Changed to flex-start so elements align at top */
       }
 
-      .stat-item .stat-number {
-        font-size: 3.5rem;
+      .stat-item {
+        position: relative;
+      }
+
+      /* Divider line between stats on desktop */
+      .stat-item:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        right: -1rem;
+        top: 10%;
+        height: 80%;
+        width: 1px;
+        background: rgba(255, 255, 255, 0.3);
+        display: block;
+      }
+
+      .stat-wrapper {
+        display: inline-block;
+      }
+
+      .stat-number {
+        font-size: 4rem;
         font-weight: 700;
+        line-height: 1;
+        display: inline-block;
+        text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
       }
 
-      .stat-item .stat-label {
-        font-size: 1.2rem;
+      .stat-suffix {
+        font-size: 2.5rem;
+        font-weight: 600;
+        vertical-align: top;
+        opacity: 0.9;
+        margin-left: 2px;
+      }
+
+      .stat-label {
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-top: 0.5rem;
+        opacity: 0.9;
+      }
+
+      /* New Style for the "Growing" text */
+      .stat-growing {
+        font-size: 0.9rem;
         font-weight: 400;
+        font-style: italic;
+        color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
+        margin-top: 0.2rem;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          opacity: 0.6;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0.6;
+        }
       }
 
       /* --- Coverage Section --- */
@@ -156,16 +220,17 @@
         max-width: 100%;
         height: auto;
         border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease;
+      }
+
+      .coverage-map img:hover {
+        transform: scale(1.02);
       }
 
       /* --- Future Plans Section --- */
       .future-plans {
-        background: linear-gradient(
-          135deg,
-          #ffffff 0%,
-          var(--light-color) 100%
-        );
+        background: #f9f9f9;
       }
 
       .future-plans .container {
@@ -180,28 +245,30 @@
       .plans-list {
         list-style: none;
         padding-left: 0;
+        background: white;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
       }
 
       .plans-list li {
         font-size: 1.2rem;
         padding: 1.25rem 0 1.25rem 3.5rem;
         position: relative;
-        border-bottom: 1px solid #dcdcdc;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-bottom: 1px solid #eee;
+        transition: transform 0.3s ease;
       }
 
       .plans-list li:hover {
-        transform: translateY(-5px);
-      }
-
-      /* Style for the completed/strikethrough item */
-      .plans-list li s {
-        color: #8a8a8a;
-        text-decoration-color: #999;
+        transform: translateX(10px);
       }
 
       .plans-list li:last-child {
         border-bottom: none;
+      }
+
+      .plans-list li s {
+        color: #aaa;
       }
 
       .plans-list li::before {
@@ -212,12 +279,7 @@
         transform: translateY(-50%);
         color: var(--primary-color);
         font-weight: 700;
-        font-size: 1.8rem;
-        transition: transform 0.3s ease;
-      }
-
-      .plans-list li:hover::before {
-        transform: translateY(-50%) scale(1.2);
+        font-size: 1.5rem;
       }
 
       /* --- Footer --- */
@@ -225,14 +287,16 @@
         background: var(--dark-color);
         color: white;
         text-align: center;
-        padding: 2.5rem 0;
+        padding: 3rem 0;
+        font-size: 0.9rem;
       }
 
-      /* --- Animation Classes --- */
+      /* --- Animations --- */
       .fade-in {
         opacity: 0;
         transform: translateY(30px);
-        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1),
+          transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
       }
 
       .fade-in.is-visible {
@@ -240,17 +304,20 @@
         transform: translateY(0);
       }
 
-      /* --- Responsive Design --- */
+      /* --- Responsive --- */
       @media (max-width: 768px) {
         h1 {
           font-size: 2.5rem !important;
         }
-        .hero p {
-          font-size: 1.1rem;
-        }
 
         .stats .container {
           grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+
+        /* Remove divider on mobile */
+        .stat-item:not(:last-child)::after {
+          display: none;
         }
 
         .main-header .container {
@@ -261,7 +328,6 @@
     </style>
   </head>
   <body>
-    <!-- Header -->
     <header class="main-header">
       <div class="container">
         <div class="logo">Tomato Can 360</div>
@@ -276,14 +342,14 @@
     </header>
 
     <main>
-      <!-- Hero Section -->
+      <!-- Hero -->
       <section class="hero" id="about">
         <div class="container">
           <h1 class="fade-in">Putting Your World <span>on the Map</span>.</h1>
           <p class="fade-in">
             Tomato Can 360 is dedicated to capturing and uploading high-quality
             360° street view imagery. We focus on areas missed by major
-            providers and keep existing coverage fresh and up-to-date.
+            providers and keep existing coverage fresh.
           </p>
         </div>
       </section>
@@ -291,47 +357,60 @@
       <!-- Stats Section -->
       <section class="stats" id="stats">
         <div class="container">
+          <!-- Item 1: Images (With the Growing Text) -->
           <div class="stat-item fade-in">
-            <p class="stat-number" data-target="16.5">0</p>
-            <p class="stat-label">Thousand Images! (and growing!)</p>
+            <div class="stat-wrapper">
+              <span class="stat-number" data-target="18.7">0</span>
+              <span class="stat-suffix">k</span>
+            </div>
+            <p class="stat-label">Images Captured</p>
+            <!-- HERE IS THE NEW GROWING TEXT -->
+            <p class="stat-growing">(and growing!)</p>
           </div>
+
+          <!-- Item 2: Distance -->
           <div class="stat-item fade-in">
-            <p class="stat-number" data-target="38">0</p>
-            <p class="stat-label">Kilometers</p>
+            <div class="stat-wrapper">
+              <span class="stat-number" data-target="34">0</span>
+              <span class="stat-suffix">+</span>
+            </div>
+            <p class="stat-label">Miles Covered</p>
           </div>
+
+          <!-- Item 3: Live Status -->
           <div class="stat-item fade-in">
-            <p class="stat-number live">Live</p>
-            <p class="stat-label">On Mapillary and Google!</p>
+            <div class="stat-wrapper">
+              <span class="stat-number">Live</span>
+            </div>
+            <p class="stat-label">Google & Mapillary</p>
           </div>
         </div>
       </section>
 
-      <!-- Counties We've Covered Section -->
+      <!-- Coverage Section -->
       <section class="coverage" id="coverage">
         <div class="container">
           <h2 class="fade-in">Counties We've Covered</h2>
           <p class="fade-in">
-            We are actively mapping key areas across Southeast Texas. Our
-            coverage includes established routes in Montgomery County and our
-            current operations are focused on expanding into Harris County!
+            We are actively mapping key areas across Southeast Texas. From our
+            established routes in Montgomery County, we are now extending
+            coverage north into Walker County and south into Harris County!
           </p>
           <div class="coverage-map fade-in">
-            <!-- THIS IMAGE SOURCE HAS BEEN UPDATED -->
             <img
-              src="https://8upload.com/image/68fd3cb91b9cf/MapChart_Map__1_.png"
+              src="https://i.imgur.com/QHxsTqf.png"
               alt="Map showing coverage in Montgomery County and Walker County, Texas"
             />
           </div>
         </div>
       </section>
 
-      <!-- Future Plans Section -->
+      <!-- Future Plans -->
       <section class="future-plans" id="plans">
         <div class="container">
           <h2 class="fade-in">Future Plans</h2>
           <ul class="plans-list">
             <li class="fade-in">More Coverage (Obviously)</li>
-            <!-- THIS ITEM NOW HAS A STRIKETHROUGH -->
             <li class="fade-in"><s>Coverage in another county</s></li>
             <li class="fade-in">Coverage in another STATE..</li>
             <li class="fade-in">
@@ -342,22 +421,19 @@
       </section>
     </main>
 
-    <!-- Footer -->
     <footer class="main-footer">
       <div class="container">
         <p>&copy; 2025 Tomato Can 360. All Rights Reserved.</p>
       </div>
     </footer>
 
-    <!-- JAVASCRIPT for Animations -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        // --- FADE-IN ON SCROLL ANIMATION ---
+        // Fade In Logic
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry, index) => {
               if (entry.isIntersecting) {
-                // Add a delay to each item in a list for a staggered effect
                 const delay = entry.target.closest(".plans-list")
                   ? index * 100
                   : 0;
@@ -367,23 +443,24 @@
               }
             });
           },
-          {
-            threshold: 0.1, // Trigger when 10% of the element is visible
-          }
+          { threshold: 0.1 }
         );
+        document
+          .querySelectorAll(".fade-in")
+          .forEach((t) => observer.observe(t));
 
-        const targets = document.querySelectorAll(".fade-in");
-        targets.forEach((target) => observer.observe(target));
-
-        // --- STATS COUNTER ANIMATION ---
+        // Stats Counter Logic
         const statsSection = document.getElementById("stats");
-        let hasAnimated = false; // Flag to ensure animation runs only once
+        let hasAnimated = false;
 
         const countUp = () => {
-          const counters = document.querySelectorAll(".stat-number:not(.live)");
-          const speed = 200; // The lower the number, the faster the count
+          const counters = document.querySelectorAll(".stat-number");
+          const speed = 100;
 
           counters.forEach((counter) => {
+            // Skip if it's text (like "Live")
+            if (isNaN(parseFloat(counter.getAttribute("data-target")))) return;
+
             const target = +counter.getAttribute("data-target");
 
             const updateCount = () => {
@@ -392,20 +469,19 @@
 
               if (count < target) {
                 let newCount = count + increment;
-                // Check if the target is a float (has a decimal)
                 if (target.toString().includes(".")) {
                   counter.innerText = newCount.toFixed(1);
                 } else {
                   counter.innerText = Math.ceil(newCount);
                 }
-                setTimeout(updateCount, 15);
+                setTimeout(updateCount, 20);
               } else {
                 counter.innerText = target;
               }
             };
             updateCount();
           });
-          hasAnimated = true; // Set flag to true after animating
+          hasAnimated = true;
         };
 
         const statsObserver = new IntersectionObserver(
@@ -416,9 +492,7 @@
               }
             });
           },
-          {
-            threshold: 0.5, // Trigger when 50% of the stats section is visible
-          }
+          { threshold: 0.5 }
         );
 
         statsObserver.observe(statsSection);
