@@ -1,573 +1,220 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tomato Can 360 - Mapping the Unmapped</title>
+    <title>Tomato Can 360</title>
     <style>
-      /* --- Google Font Import --- */
-      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
-
-      /* --- CSS Variables --- */
-      :root {
-        --primary-color: #ff6347; /* Tomato Red */
-        --dark-color: #2c3e50;
-        --light-color: #ecf0f1;
-        --background-color: #ffffff;
-        --container-width: 1100px;
-      }
-
-      /* --- Global Styles --- */
-      * {
-        box-sizing: border-box;
+      body {
+        background-color: #000080;
+        color: #ffffff;
+        font-family: Arial, Helvetica, sans-serif;
         margin: 0;
         padding: 0;
       }
-
-      html {
-        scroll-behavior: smooth;
+      a:link {
+        color: #ffff00;
+        text-decoration: underline;
       }
-
-      body {
-        font-family: "Poppins", sans-serif;
-        line-height: 1.6;
-        background-color: var(--background-color);
-        color: var(--dark-color);
+      a:visited {
+        color: #ffcc00;
+        text-decoration: underline;
       }
-
-      .container {
-        max-width: var(--container-width);
-        margin: auto;
-        overflow: hidden;
-        padding: 0 2rem;
+      a:active {
+        color: #ff0000;
+        text-decoration: underline;
       }
-
+      a:hover {
+        color: #ffffff;
+      }
       h1,
       h2 {
-        font-weight: 700;
-        margin-bottom: 1rem;
+        font-family: "Times New Roman", Times, serif;
+        margin-bottom: 5px;
       }
-
-      section {
-        padding: 5rem 0;
-        overflow: hidden;
+      .button-link {
+        background-color: #c0c0c0;
+        color: #000000 !important;
+        border: 3px outset #ffffff;
+        text-decoration: none !important;
+        padding: 2px 10px;
+        font-weight: bold;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
       }
-
-      /* --- Header --- */
-      .main-header {
-        background: rgba(44, 62, 80, 0.95);
-        color: white;
-        padding: 1rem 0;
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        backdrop-filter: blur(10px);
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+      .content-box {
+        background-color: #000066;
+        border: 2px inset #ffffff;
+        padding: 15px;
+        margin-top: 15px;
+        margin-bottom: 15px;
       }
-
-      .main-header .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+      .blink-text {
+        color: #ff0000;
+        font-weight: bold;
+        text-decoration: blink;
       }
-
-      .main-header .logo {
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: var(--primary-color);
-        letter-spacing: -1px;
-      }
-
-      .main-nav ul {
-        list-style: none;
-        display: flex;
-        align-items: center;
-      }
-
-      .main-nav a {
-        color: white;
-        text-decoration: none;
-        padding: 0.5rem 1rem;
-        font-weight: 600;
-        transition: color 0.3s ease;
-      }
-
-      .main-nav a:hover {
-        color: var(--primary-color);
-      }
-
-      /* SPECIAL BUTTON FOR TC90 LINK */
-      .nav-btn-blue {
-        background-color: #3498db;
-        border-radius: 20px;
-        padding: 0.4rem 1.2rem !important;
-        font-size: 0.9rem;
-        margin-left: 15px;
-        transition: all 0.3s ease !important;
-      }
-
-      .nav-btn-blue:hover {
-        background-color: #2980b9;
-        color: white !important;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 10px rgba(52, 152, 219, 0.4);
-      }
-
-      /* --- Hero Section --- */
-      .hero {
-        background: linear-gradient(
-          135deg,
-          var(--light-color) 0%,
-          #ffffff 100%
-        );
-        text-align: center;
-        padding: 7rem 0 6rem;
-      }
-
-      .hero h1 {
-        font-size: 3.5rem;
-        color: var(--dark-color);
-        line-height: 1.2;
-      }
-
-      .hero h1 span {
-        color: var(--primary-color);
-      }
-
-      .hero p {
-        font-size: 1.25rem;
-        max-width: 700px;
-        margin: 1rem auto 0;
-        color: #555;
-      }
-
-      /* --- Stats Section --- */
-      .stats {
-        background: var(--primary-color);
-        color: white;
-        padding: 4rem 0;
-        position: relative;
-      }
-
-      .stats .container {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
-        text-align: center;
-        align-items: flex-start;
-      }
-
-      .stat-item {
-        position: relative;
-      }
-
-      /* Desktop Divider */
-      .stat-item:not(:last-child)::after {
-        content: "";
-        position: absolute;
-        right: -1rem;
-        top: 10%;
-        height: 80%;
-        width: 1px;
-        background: rgba(255, 255, 255, 0.3);
-        display: block;
-      }
-
-      .stat-wrapper {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-      }
-
       .stat-number {
-        font-size: 4rem;
-        font-weight: 700;
-        line-height: 1;
-        text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
-      }
-
-      .stat-suffix {
-        font-size: 2.5rem;
-        font-weight: 600;
-        vertical-align: top;
-        opacity: 0.9;
-        margin-left: 2px;
-      }
-
-      .stat-label {
-        font-size: 1.1rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        margin-top: 0.5rem;
-        opacity: 0.9;
-      }
-
-      .stat-growing {
-        font-size: 0.9rem;
-        font-weight: 400;
-        font-style: italic;
-        color: rgba(255, 255, 255, 0.8);
-        margin-top: 0.2rem;
-        animation: text-pulse 2s infinite;
-      }
-
-      @keyframes text-pulse {
-        0% {
-          opacity: 0.6;
-        }
-        50% {
-          opacity: 1;
-        }
-        100% {
-          opacity: 0.6;
-        }
-      }
-
-      /* PULSING DOT ANIMATION */
-      .pulsing-dot {
-        display: inline-block;
-        width: 15px;
-        height: 15px;
-        background-color: white;
-        border-radius: 50%;
-        margin-right: 12px;
-        position: relative;
-        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
-        animation: pulse-ring 2s infinite;
-      }
-
-      @keyframes pulse-ring {
-        0% {
-          transform: scale(0.95);
-          box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
-        }
-        70% {
-          transform: scale(1);
-          box-shadow: 0 0 0 15px rgba(255, 255, 255, 0);
-        }
-        100% {
-          transform: scale(0.95);
-          box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-        }
-      }
-
-      /* --- Coverage Section --- */
-      .coverage {
-        text-align: center;
-      }
-
-      .coverage-map {
-        max-width: 600px;
-        margin: 2.5rem auto 0;
-        perspective: 1000px;
-        transform-style: preserve-3d;
-      }
-
-      .coverage-map img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 12px;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-        transition: transform 0.1s ease-out;
-        will-change: transform;
-      }
-
-      /* --- Future Plans Section --- */
-      .future-plans {
-        background: #f9f9f9;
-      }
-
-      .future-plans .container {
-        max-width: 800px;
-      }
-
-      .future-plans h2 {
-        text-align: center;
-        margin-bottom: 2.5rem;
-      }
-
-      .plans-list {
-        list-style: none;
-        padding-left: 0;
-        background: white;
-        padding: 1rem 2rem;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      }
-
-      .plans-list li {
-        font-size: 1.2rem;
-        padding: 1.25rem 0 1.25rem 3.5rem;
-        position: relative;
-        border-bottom: 1px solid #eee;
-        transition: transform 0.3s ease;
-      }
-
-      .plans-list li:hover {
-        transform: translateX(10px);
-      }
-
-      .plans-list li:last-child {
-        border-bottom: none;
-      }
-
-      .plans-list li s {
-        color: #aaa;
-      }
-
-      .plans-list li::before {
-        content: "➤";
-        position: absolute;
-        left: 0.5rem;
-        top: 50%;
-        transform: translateY(-50%);
-        color: var(--primary-color);
-        font-weight: 700;
-        font-size: 1.5rem;
-      }
-
-      /* --- Footer --- */
-      .main-footer {
-        background: var(--dark-color);
-        color: white;
-        text-align: center;
-        padding: 3rem 0;
-        font-size: 0.9rem;
-      }
-
-      /* --- Animations --- */
-      .fade-in {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1),
-          transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-      }
-
-      .fade-in.is-visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      /* --- Responsive --- */
-      @media (max-width: 768px) {
-        h1 {
-          font-size: 2.5rem !important;
-        }
-
-        .stats .container {
-          grid-template-columns: 1fr;
-          gap: 3rem;
-        }
-
-        .stat-item:not(:last-child)::after {
-          display: none;
-        }
-
-        .main-header .container {
-          flex-direction: column;
-          gap: 0.5rem;
-        }
-
-        .nav-btn-blue {
-          margin-left: 0;
-          margin-top: 5px;
-        }
+        font-size: 36px;
+        font-weight: bold;
+        font-family: "Times New Roman", Times, serif;
       }
     </style>
   </head>
   <body>
-    <header class="main-header">
-      <div class="container">
-        <div class="logo">Tomato Can 360</div>
-        <nav class="main-nav">
-          <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#coverage">Coverage</a></li>
-            <li><a href="#plans">Future Plans</a></li>
-            <!-- HERE IS THE NEW BUTTON -->
-            <li>
-              <a href="tomatocan90.html" class="nav-btn-blue">Visit TC90 ↗</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+    <center>
+      <table width="800" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <table
+              width="100%"
+              border="2"
+              cellpadding="8"
+              bgcolor="#000040"
+              bordercolor="#ffffff"
+            >
+              <tr>
+                <td width="40%">
+                  <b
+                    ><font size="5" color="#FF6347" face="Arial"
+                      >Tomato Can 360</font
+                    ></b
+                  >
+                </td>
+                <td width="60%" align="right">
+                  <font face="Arial" size="3">
+                    <a href="#">Home</a> &nbsp;|&nbsp;
+                    <a href="#">Coverage</a> &nbsp;|&nbsp;
+                    <a href="#">Updates</a> &nbsp;|&nbsp;
+                    <a href="tomatocan90.html" class="button-link">TC90 Link</a>
+                  </font>
+                </td>
+              </tr>
+            </table>
 
-    <main>
-      <!-- Hero -->
-      <section class="hero" id="about">
-        <div class="container">
-          <h1 class="fade-in">Putting Your World <span>on the Map</span>.</h1>
-          <p class="fade-in">
-            Tomato Can 360 is dedicated to capturing and uploading high-quality
-            360° street view imagery. We focus on areas missed by major
-            providers and keep existing coverage fresh.
-          </p>
-        </div>
-      </section>
+            <br />
 
-      <!-- Stats Section -->
-      <section class="stats" id="stats">
-        <div class="container">
-          <!-- Item 1: Images -->
-          <div class="stat-item fade-in">
-            <div class="stat-wrapper">
-              <span class="stat-number" data-target="30.6">0</span>
-              <span class="stat-suffix">k</span>
+            <center>
+              <h1>
+                Welcome to the <font color="#FF6347">Tomato Can 360</font> site!
+              </h1>
+              <p>
+                <font size="4"
+                  >Doing coverage mostly in southeast Texas, growing each
+                  day!</font
+                >
+              </p>
+            </center>
+
+            <br />
+            <hr size="3" width="90%" color="#c0c0c0" />
+            <br />
+
+            <div class="content-box">
+              <center>
+                <table
+                  width="95%"
+                  border="1"
+                  cellpadding="15"
+                  bgcolor="#000040"
+                  bordercolor="#c0c0c0"
+                >
+                  <tr align="center">
+                    <td width="33%">
+                      <span class="stat-number">39,000+</span><br />
+                      <b><font face="Arial">Images Captured</font></b
+                      ><br />
+                      <marquee width="80%" scrollamount="3"
+                        ><font size="2" color="#c0c0c0"
+                          ><i>Constantly growing...</i></font
+                        ></marquee
+                      >
+                    </td>
+                    <td width="33%">
+                      <span class="stat-number">46+</span><br />
+                      <b><font face="Arial">Miles Covered</font></b>
+                    </td>
+                    <td width="33%">
+                      <span class="stat-number"
+                        ><span class="blink-text">*</span> LIVE</span
+                      ><br />
+                      <b><font face="Arial">Google & Mapillary</font></b>
+                    </td>
+                  </tr>
+                </table>
+              </center>
             </div>
-            <p class="stat-label">Images Captured</p>
-            <p class="stat-growing">(and growing!)</p>
-          </div>
 
-          <!-- Item 2: Distance -->
-          <div class="stat-item fade-in">
-            <div class="stat-wrapper">
-              <span class="stat-number" data-target="45">0</span>
-              <span class="stat-suffix">+</span>
+            <br />
+            <hr size="3" width="90%" color="#c0c0c0" />
+            <br />
+
+            <center>
+              <h2>Coverage Map</h2>
+              <table
+                border="5"
+                cellpadding="0"
+                cellspacing="0"
+                bordercolor="#c0c0c0"
+                bgcolor="#ffffff"
+              >
+                <tr>
+                  <td>
+                    <img
+                      src="https://i.ibb.co/PGpxpTkZ/square-image-1.jpg"
+                      alt="Map showing coverage in Montgomery County and Walker County, Texas"
+                      width="600"
+                      border="0"
+                    />
+                  </td>
+                </tr>
+              </table>
+            </center>
+
+            <br />
+            <hr size="3" width="90%" color="#c0c0c0" />
+            <br />
+
+            <div class="content-box">
+              <center><h2>Future Plans</h2></center>
+              <table width="100%" border="0" cellpadding="5">
+                <tr>
+                  <td width="10%">&nbsp;</td>
+                  <td width="90%">
+                    <ul type="square">
+                      <li>
+                        <font size="3">More Coverage (Obviously)</font>
+                      </li>
+                      <li>
+                        <font size="3"><s>Coverage in another county</s></font>
+                      </li>
+                      <li>
+                        <font size="3">Coverage in another STATE..</font>
+                      </li>
+                      <li>
+                        <font size="3"
+                          >Get captured by the Google car WHILE capturing</font
+                        >
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+              </table>
             </div>
-            <p class="stat-label">Miles Covered</p>
-          </div>
 
-          <!-- Item 3: Live Status -->
-          <div class="stat-item fade-in">
-            <div class="stat-wrapper">
-              <span class="pulsing-dot"></span>
-              <span class="stat-number">Live</span>
-            </div>
-            <p class="stat-label">Google & Mapillary</p>
-          </div>
-        </div>
-      </section>
+            <br /><br />
 
-      <!-- Coverage Section -->
-      <section class="coverage" id="coverage">
-        <div class="container">
-          <h2 class="fade-in">Counties We've Covered</h2>
-          <p class="fade-in">
-            We are actively mapping key areas across Southeast Texas. From our
-            established routes in Montgomery County, we are expanding coverage
-            into Grimes, Walker, and Harris counties.
-          </p>
-
-          <!-- 3D Map Tilt Container -->
-          <div class="coverage-map fade-in" id="map-container">
-            <img
-              src="https://i.ibb.co/PGpxpTkZ/square-image-1.jpg"
-              alt="Map showing coverage in Montgomery County and Walker County, Texas"
-              id="map-image"
-            />
-          </div>
-        </div>
-      </section>
-
-      <!-- Future Plans -->
-      <section class="future-plans" id="plans">
-        <div class="container">
-          <h2 class="fade-in">Future Plans</h2>
-          <ul class="plans-list">
-            <li class="fade-in">More Coverage (Obviously)</li>
-            <li class="fade-in"><s>Coverage in another county</s></li>
-            <li class="fade-in">Coverage in another STATE..</li>
-            <li class="fade-in">
-              Get captured by the Google car while capturing
-            </li>
-          </ul>
-        </div>
-      </section>
-    </main>
-
-    <footer class="main-footer">
-      <div class="container">
-        <p>&copy; 2025 Tomato Can 360. All Rights Reserved.</p>
-      </div>
-    </footer>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Fade In
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry, index) => {
-              if (entry.isIntersecting) {
-                const delay = entry.target.closest(".plans-list")
-                  ? index * 100
-                  : 0;
-                setTimeout(() => {
-                  entry.target.classList.add("is-visible");
-                }, delay);
-              }
-            });
-          },
-          { threshold: 0.1 }
-        );
-        document
-          .querySelectorAll(".fade-in")
-          .forEach((t) => observer.observe(t));
-
-        // Stats Counter
-        const statsSection = document.getElementById("stats");
-        let hasAnimated = false;
-
-        const countUp = () => {
-          const counters = document.querySelectorAll(".stat-number");
-          const speed = 100;
-
-          counters.forEach((counter) => {
-            if (isNaN(parseFloat(counter.getAttribute("data-target")))) return;
-
-            const target = +counter.getAttribute("data-target");
-
-            const updateCount = () => {
-              const count = +counter.innerText;
-              const increment = target / speed;
-
-              if (count < target) {
-                let newCount = count + increment;
-                if (target.toString().includes(".")) {
-                  counter.innerText = newCount.toFixed(1);
-                } else {
-                  counter.innerText = Math.ceil(newCount);
-                }
-                setTimeout(updateCount, 20);
-              } else {
-                counter.innerText = target;
-              }
-            };
-            updateCount();
-          });
-          hasAnimated = true;
-        };
-
-        const statsObserver = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting && !hasAnimated) {
-                countUp();
-              }
-            });
-          },
-          { threshold: 0.5 }
-        );
-        statsObserver.observe(statsSection);
-
-        // 3D Map Tilt
-        const mapContainer = document.getElementById("map-container");
-        const mapImg = document.getElementById("map-image");
-
-        mapContainer.addEventListener("mousemove", (e) => {
-          const rect = mapContainer.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          const xRotation = -(((x - rect.width / 2) / rect.width) * 10);
-          const yRotation = ((y - rect.height / 2) / rect.height) * 10;
-          mapImg.style.transform = `scale(1.05) rotateX(${yRotation}deg) rotateY(${xRotation}deg)`;
-        });
-
-        mapContainer.addEventListener("mouseleave", () => {
-          mapImg.style.transform = `scale(1) rotateX(0) rotateY(0)`;
-        });
-      });
-    </script>
+            <table width="100%" border="0" cellpadding="10" bgcolor="#000040">
+              <tr>
+                <td align="center">
+                  <font size="2" face="Arial" color="#c0c0c0">
+                    &copy; Coverage Project.<br />
+                    Best viewed in Netscape Navigator 4.0 or Internet Explorer
+                    5.0 at 800x600 resolution.
+                  </font>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </center>
   </body>
 </html>

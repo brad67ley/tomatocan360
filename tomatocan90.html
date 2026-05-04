@@ -1,207 +1,173 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tomato Can 90 - The Narrow View</title>
-    <style>
-      /* --- Font: Courier Prime/Monospace for that "Budget/Raw" feel --- */
-      @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
-
-      /* --- CSS Variables (BLUE THEME) --- */
-      :root {
-        --primary-color: #3498db; /* Budget Blue */
-        --dark-color: #222;
-        --light-color: #f4f4f4;
-        --background-color: #ffffff;
-        --container-width: 1100px;
-      }
-
-      /* --- Global Styles --- */
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-
-      body {
-        font-family: 'Courier Prime', monospace; 
-        line-height: 1.6;
-        background-color: var(--background-color);
-        color: var(--dark-color);
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-      }
-
-      .container {
-        max-width: var(--container-width);
-        margin: auto;
-        overflow: hidden;
-        padding: 0 2rem;
-      }
-
-      h1, h2 {
-        font-weight: 700;
-        margin-bottom: 1rem;
-      }
-
-      section {
-        padding: 5rem 0;
-      }
-
-      /* --- Header --- */
-      .main-header {
-        background: #fff;
-        color: var(--dark-color);
-        padding: 1rem 0;
-        border-bottom: 2px solid var(--primary-color);
-      }
-
-      .main-header .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .main-header .logo {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--primary-color);
-      }
-
-      .main-nav ul {
-        list-style: none;
-        display: flex;
-        gap: 20px;
-        align-items: center;
-      }
-
-      .main-nav a {
-        color: var(--dark-color);
-        text-decoration: none;
-        font-weight: 700;
-      }
-      
-      /* Link back to main site */
-      .main-nav .back-link {
-        color: #ff6347; /* Tomato Red */
-        border: 1px solid #ff6347;
-        padding: 6px 12px;
-        border-radius: 4px;
-        transition: all 0.2s ease;
-      }
-
-      .main-nav .back-link:hover {
-        background-color: #ff6347;
-        color: white;
-      }
-
-      /* --- Hero Section --- */
-      .hero {
-        text-align: center;
-        padding: 8rem 0;
-        background-color: #f0f8ff; /* Light AliceBlue */
-        flex: 1; /* Pushes footer down */
-      }
-
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-
-      .hero span {
-        background-color: var(--primary-color);
-        color: white;
-        padding: 0 10px;
-      }
-
-      /* --- Stats Section --- */
-      .stats {
-        background: var(--dark-color);
-        color: var(--primary-color);
-        padding: 4rem 0;
-        font-family: monospace;
-      }
-
-      .stats .container {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
-        text-align: center;
-      }
-
-      .stat-number {
-        font-size: 3rem;
-        font-weight: 700;
-        color: white;
-      }
-
-      .stat-label {
-        color: var(--primary-color);
-        text-transform: uppercase;
-        letter-spacing: 1px;
-      }
-
-      /* --- Footer --- */
-      footer {
-        text-align: center;
-        padding: 2rem;
-        font-size: 0.8rem;
-        background: #eee;
-        border-top: 1px solid #ddd;
-      }
-
-      /* --- Responsive --- */
-      @media (max-width: 768px) {
-        .stats .container { grid-template-columns: 1fr; }
-      }
-    </style>
+    <title>Tomato Can 90</title>
   </head>
-  <body>
-    
-    <header class="main-header">
-      <div class="container">
-        <div class="logo">TomatoCan90</div>
-        <nav class="main-nav">
-          <ul>
-            <!-- Only the back button remains -->
-            <li><a href="index.html" class="back-link">← Back to 360</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+  <body
+    bgcolor="#f0f8ff"
+    text="#222222"
+    link="#ff6347"
+    vlink="#cc4f39"
+    alink="#ff0000"
+  >
+    <center>
+      <table width="800" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <table
+              width="100%"
+              border="0"
+              bgcolor="#ffffff"
+              cellpadding="15"
+              cellspacing="0"
+              style="border-bottom: 4px solid #3498db"
+            >
+              <tr>
+                <td width="50%" align="left">
+                  <font
+                    size="5"
+                    color="#3498db"
+                    face="Courier New, Courier, monospace"
+                    ><b>TomatoCan90</b></font
+                  >
+                </td>
+                <td width="50%" align="right">
+                  <table
+                    border="2"
+                    bordercolor="#ff6347"
+                    bgcolor="#ffffff"
+                    cellpadding="5"
+                    cellspacing="0"
+                  >
+                    <tr>
+                      <td align="center">
+                        <b
+                          ><a href="index.html" style="text-decoration: none"
+                            ><font face="Courier New, Courier, monospace"
+                              >&larr; Back to 360</font
+                            ></a
+                          ></b
+                        >
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
 
-    <section class="hero">
-      <div class="container">
-        <h1>The <span>90°</span> Experience</h1>
-        <p>
-          An offspring of TomatoCan360. <br>
-          Instead of 360 photos, it's just... 90. <br>
-          Same roads, less peripheral vision.
-        </p>
-      </div>
-    </section>
+            <br /><br /><br /><br />
 
-    <section class="stats">
-      <div class="container">
-        <div>
-          <div class="stat-number">1.8k</div>
-          <div class="stat-label">Standard Images</div>
-        </div>
-        <div>
-          <div class="stat-number">7+</div>
-          <div class="stat-label">Miles (11km)</div>
-        </div>
-        <div>
-          <div class="stat-number">Live</div>
-          <div class="stat-label">On Mapillary</div>
-        </div>
-      </div>
-    </section>
+            <center>
+              <font size="6" face="Courier New, Courier, monospace"
+                ><b
+                  >The
+                  <span style="background-color: #3498db; color: #ffffff"
+                    >&nbsp;90&deg;&nbsp;</span
+                  >
+                  Experience</b
+                ></font
+              >
+              <br /><br /><br />
+              <table
+                width="70%"
+                border="3"
+                cellpadding="20"
+                bgcolor="#ffffff"
+                bordercolor="#c0c0c0"
+              >
+                <tr>
+                  <td align="center">
+                    <font size="4" face="Courier New, Courier, monospace">
+                      An offspring of TomatoCan360.<br /><br />
+                      Instead of 360 photos, it's just... 90.<br /><br />
+                    </font>
+                  </td>
+                </tr>
+              </table>
+            </center>
 
-    <footer>
-      <p>TomatoCan90</p>
-    </footer>
+            <br /><br /><br /><br />
 
+            <center>
+              <table
+                width="100%"
+                border="5"
+                cellpadding="15"
+                cellspacing="0"
+                bgcolor="#222222"
+                bordercolor="#3498db"
+              >
+                <tr align="center">
+                  <td width="33%">
+                    <font
+                      size="6"
+                      color="#ffffff"
+                      face="Courier New, Courier, monospace"
+                      ><b>12k</b></font
+                    ><br />
+                    <br />
+                    <font
+                      size="3"
+                      color="#3498db"
+                      face="Courier New, Courier, monospace"
+                      ><b>STANDARD IMAGES</b></font
+                    >
+                  </td>
+                  <td width="33%">
+                    <font
+                      size="6"
+                      color="#ffffff"
+                      face="Courier New, Courier, monospace"
+                      ><b>119+</b></font
+                    ><br />
+                    <br />
+                    <font
+                      size="3"
+                      color="#3498db"
+                      face="Courier New, Courier, monospace"
+                      ><b>MILES (192KM)</b></font
+                    >
+                  </td>
+                  <td width="33%">
+                    <font
+                      size="6"
+                      color="#ffffff"
+                      face="Courier New, Courier, monospace"
+                      ><b>Live</b></font
+                    ><br />
+                    <br />
+                    <marquee scrollamount="4" width="90%"
+                      ><font
+                        size="3"
+                        color="#3498db"
+                        face="Courier New, Courier, monospace"
+                        ><b>ON MAPILLARY</b></font
+                      ></marquee
+                    >
+                  </td>
+                </tr>
+              </table>
+            </center>
+
+            <br /><br /><br />
+
+            <table
+              width="100%"
+              border="0"
+              cellpadding="20"
+              bgcolor="#eeeeee"
+              style="border-top: 2px solid #dddddd"
+            >
+              <tr>
+                <td align="center">
+                  <font size="2" face="Courier New, Courier, monospace"
+                    >TomatoCan90</font
+                  >
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </center>
   </body>
 </html>
