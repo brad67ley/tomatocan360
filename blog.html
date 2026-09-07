@@ -162,29 +162,7 @@
         font-size: 13px;
       }
 
-      /* VERIFIED: YES & NO TAGS */
-      .tag-verified-yes {
-        background-color: #008800;
-        color: #ffffff;
-        font-size: 10px;
-        font-weight: bold;
-        padding: 1px 5px;
-        border: 1px outset #ffffff;
-        margin-left: 5px;
-        vertical-align: middle;
-      }
-
-      .tag-verified-no {
-        background-color: #440000;
-        color: #ff9999;
-        font-size: 10px;
-        font-weight: bold;
-        padding: 1px 5px;
-        border: 1px inset #888888;
-        margin-left: 5px;
-        vertical-align: middle;
-      }
-
+      /* BLUE VERIFIED CHECKMARK */
       .blue-check {
         background-color: #0099ff;
         color: #ffffff;
@@ -192,7 +170,7 @@
         font-size: 10px;
         font-weight: bold;
         padding: 1px 4px;
-        margin-left: 3px;
+        margin-left: 4px;
         display: inline-block;
         border: 1px solid #ffffff;
         vertical-align: middle;
@@ -343,15 +321,15 @@
           const isVerified = data.verified === "yes" || data.verified === true;
           const nameColor = isVerified ? "#ffff00" : "#00ffff";
 
-          // Show VERIFIED: YES or VERIFIED: NO badge
-          const verifiedBadge = isVerified
-            ? '<span class="tag-verified-yes">VERIFIED: YES</span> <span class="blue-check">✓</span>'
-            : '<span class="tag-verified-no">VERIFIED: NO</span>';
+          // ONLY display the blue checkmark if verified is "yes" (otherwise nothing!)
+          const checkmark = isVerified
+            ? '<span class="blue-check" title="Verified Owner">✓</span>'
+            : '';
 
           const commentHTML = `
             <div class="comment-box">
               <b style="color: ${nameColor};">${data.author}</b>
-              ${verifiedBadge}
+              ${checkmark}
               <font size="1" color="#8888aa"> - ${data.date || 'Recently'}</font>
               <div style="margin-top: 4px;">${data.text}</div>
               <div class="comment-actions">
@@ -377,12 +355,12 @@
           nameInput = "Anonymous";
         }
 
-        // EVERY comment starts as verified: "no"
+        // EVERY comment starts as verified: "no" (no checkmark)
         push(ref(db, "comments"), {
           postId: currentPostId,
           author: nameInput,
           text: textInput,
-          verified: "no", // << Starts as NO for everyone
+          verified: "no",
           date: new Date().toLocaleDateString(),
           timestamp: Date.now()
         }).then(() => {
