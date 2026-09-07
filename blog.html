@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tomato Can 360 - Official Blog</title>
+    <style>
+      body {
+        background-color: #000080;
+        color: #ffffff;
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      a:link { color: #ffff00; text-decoration: underline; }
+      a:visited { color: #ffcc00; text-decoration: underline; }
+      a:active { color: #ff0000; text-decoration: underline; }
+      a:hover { color: #ffffff; }
+
+      h1, h2, h3 {
+        font-family: "Times New Roman", Times, serif;
+        margin-bottom: 5px;
+      }
+
+      /* Navbar Buttons */
+      .button-link {
+        background-color: #c0c0c0;
+        color: #000000 !important;
+        border: 3px outset #ffffff;
+        text-decoration: none !important;
+        padding: 2px 10px;
+        font-weight: bold;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+      }
+      .button-link-blog {
+        background-color: #ffcc00;
+        color: #000000 !important;
+        border: 3px outset #ffffff;
+        text-decoration: none !important;
+        padding: 2px 10px;
+        font-weight: bold;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+      }
+      .button-link-red {
+        background-color: #ff0000;
+        color: #ffffff !important;
+        border: 3px outset #ffffff;
+        text-decoration: none !important;
+        padding: 2px 10px;
+        font-weight: bold;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+      }
+
+      /* Blog Post Window */
+      .blog-window {
+        background-color: #000050;
+        border: 3px outset #ffffff;
+        box-shadow: 4px 4px 0px #000020;
+        margin-top: 25px;
+        margin-bottom: 30px;
+        text-align: left;
+      }
+
+      .blog-header-bar {
+        background: linear-gradient(to right, #000033, #000066);
+        border-bottom: 2px groove #ffffff;
+        padding: 10px 15px;
+      }
+
+      .post-title {
+        color: #00ffff;
+        font-size: 26px;
+        font-family: "Times New Roman", Times, serif;
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-shadow: 1px 1px 4px #0055ff;
+        margin: 0;
+      }
+
+      .rainbow-date {
+        background: linear-gradient(
+          to right,
+          #ff3333,
+          #ff9900,
+          #ffff33,
+          #33ff33,
+          #33ffff,
+          #3399ff,
+          #cc33ff
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+        font-size: 14px;
+        display: inline-block;
+        letter-spacing: 1px;
+      }
+
+      .badge-super-fresh {
+        background: linear-gradient(to bottom, #ff9900, #ff3300);
+        color: #ffffff;
+        font-size: 11px;
+        font-weight: bold;
+        padding: 2px 7px;
+        border: 1px outset #ffffff;
+        letter-spacing: 1px;
+        text-shadow: 1px 1px 1px #000000;
+        display: inline-block;
+      }
+
+      .blog-body {
+        padding: 18px;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #ffffff;
+      }
+
+      /* Retro Comments Section */
+      .comment-section {
+        background-color: #000038;
+        border-top: 2px inset #ffffff;
+        padding: 15px;
+      }
+
+      .comment-title {
+        font-size: 14px;
+        font-weight: bold;
+        color: #ffff00;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+      }
+
+      .comment-input {
+        background-color: #000022;
+        color: #ffffff;
+        border: 2px inset #ffffff;
+        padding: 4px 6px;
+        font-family: Arial, sans-serif;
+        font-size: 13px;
+        margin-bottom: 8px;
+      }
+
+      .comment-btn {
+        background-color: #c0c0c0;
+        color: #000000;
+        border: 2px outset #ffffff;
+        font-weight: bold;
+        padding: 3px 12px;
+        cursor: pointer;
+        font-size: 13px;
+      }
+      .comment-btn:active {
+        border: 2px inset #ffffff;
+      }
+
+      .comment-box {
+        background-color: #000028;
+        border: 1px solid #666699;
+        padding: 8px 10px;
+        margin-top: 8px;
+        font-size: 13px;
+      }
+
+      /* VERIFIED: YES & NO TAGS */
+      .tag-verified-yes {
+        background-color: #008800;
+        color: #ffffff;
+        font-size: 10px;
+        font-weight: bold;
+        padding: 1px 5px;
+        border: 1px outset #ffffff;
+        margin-left: 5px;
+        vertical-align: middle;
+      }
+
+      .tag-verified-no {
+        background-color: #440000;
+        color: #ff9999;
+        font-size: 10px;
+        font-weight: bold;
+        padding: 1px 5px;
+        border: 1px inset #888888;
+        margin-left: 5px;
+        vertical-align: middle;
+      }
+
+      .blue-check {
+        background-color: #0099ff;
+        color: #ffffff;
+        border-radius: 50%;
+        font-size: 10px;
+        font-weight: bold;
+        padding: 1px 4px;
+        margin-left: 3px;
+        display: inline-block;
+        border: 1px solid #ffffff;
+        vertical-align: middle;
+      }
+
+      .comment-actions {
+        font-size: 11px;
+        margin-top: 5px;
+      }
+      .comment-action-link {
+        color: #ffff00 !important;
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+      <table width="800" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <!-- NAVBAR -->
+            <table width="100%" border="2" cellpadding="8" bgcolor="#000040" bordercolor="#ffffff">
+              <tr>
+                <td width="28%">
+                  <b><font size="5" color="#FF6347" face="Arial">Tomato Can 360</font></b>
+                </td>
+                <td width="72%" align="right">
+                  <font face="Arial" size="3">
+                    <a href="index.html">Home</a> &nbsp;|&nbsp;
+                    <a href="index.html#coverage">Coverage</a> &nbsp;&nbsp;&nbsp;
+                    <a class="button-link-blog" href="blog.html">Blog</a> &nbsp;&nbsp;
+                    <a class="button-link" href="/tomatocan90">TC90 Link</a> &nbsp;&nbsp;
+                    <a class="button-link-red" href="openguessr.html">OpenGuessr Map</a>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+            <center>
+              <h1>Tomato Can 360 <font color="#FF6347">Official Blog</font></h1>
+              <p><font size="3">Road coverage logs, thoughts, and updates</font></p>
+            </center>
+
+            <hr size="3" width="90%" color="#c0c0c0" />
+
+            <!-- BLOG POST -->
+            <div class="blog-window">
+              <div class="blog-header-bar">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td><span class="post-title">Hello!</span></td>
+                    <td align="right"><span class="rainbow-date">Date: 9/7/26</span></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="padding-top: 6px;">
+                      <font size="2" color="#c0c0c0">
+                        Written by: <b style="color: #ffffff;">TomatoCan360 Owner</b>
+                        &nbsp;<span class="badge-super-fresh">SUPER FRESH</span>
+                      </font>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <div class="blog-body">
+                <p>
+                  yo yo yo HELLO! this is the new blog ill put updates and photos and such here when I can and when I do!
+                </p>
+              </div>
+
+              <!-- COMMENTS AREA -->
+              <div class="comment-section">
+                <div class="comment-title">Comments:</div>
+
+                <!-- Input form -->
+                <input type="text" id="author-input" class="comment-input" placeholder="Your Name (or leave blank for Anon)" size="30" />
+                <br />
+                <textarea id="comment-input" class="comment-input" rows="2" cols="65" placeholder="Write a comment..."></textarea>
+                <br />
+                <button type="button" class="comment-btn" onclick="submitComment()">Post Comment</button>
+
+                <!-- REAL COMMENTS LIST -->
+                <div id="comments-list" style="margin-top: 15px;">
+                  <font color="#8888aa" size="2">Loading comments...</font>
+                </div>
+              </div>
+            </div>
+
+            <br />
+            <hr size="3" width="90%" color="#c0c0c0" />
+            <br />
+
+            <!-- FOOTER -->
+            <table width="100%" border="0" cellpadding="10" bgcolor="#000040">
+              <tr>
+                <td align="center">
+                  <font size="2" face="Arial" color="#c0c0c0">
+                    &copy; Coverage Project.<br />
+                    Best viewed in Netscape Navigator 4.0 or Internet Explorer 5.0 at 800x600 resolution.
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+    </center>
+
+    <!-- FIREBASE MODULE SCRIPT -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+      import { getDatabase, ref, push, onValue, query, orderByChild, equalTo } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
+
+      // YOUR FIREBASE CONFIG
+      const firebaseConfig = {
+        apiKey: "AIzaSyBg56pode30fZyUd4Rcr8XHfXmc7rKJIgw",
+        authDomain: "tomatocan360-comments.firebaseapp.com",
+        databaseURL: "https://tomatocan360-comments-default-rtdb.firebaseio.com",
+        projectId: "tomatocan360-comments",
+        storageBucket: "tomatocan360-comments.firebasestorage.app",
+        messagingSenderId: "134319569778",
+        appId: "1:134319569778:web:d658fd0136447cac883beb",
+        measurementId: "G-0PS9FL17FW"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getDatabase(app);
+      const currentPostId = "post-hello-1";
+
+      // Listen for comments in real time
+      const commentsRef = query(ref(db, "comments"), orderByChild("postId"), equalTo(currentPostId));
+
+      onValue(commentsRef, (snapshot) => {
+        const container = document.getElementById("comments-list");
+        container.innerHTML = "";
+
+        if (!snapshot.exists()) {
+          container.innerHTML = '<font color="#8888aa" size="2">No comments yet! Be the first to say something.</font>';
+          return;
+        }
+
+        snapshot.forEach((child) => {
+          const data = child.val();
+          
+          // Check if verified in database
+          const isVerified = data.verified === "yes" || data.verified === true;
+          const nameColor = isVerified ? "#ffff00" : "#00ffff";
+
+          // Show VERIFIED: YES or VERIFIED: NO badge
+          const verifiedBadge = isVerified
+            ? '<span class="tag-verified-yes">VERIFIED: YES</span> <span class="blue-check">✓</span>'
+            : '<span class="tag-verified-no">VERIFIED: NO</span>';
+
+          const commentHTML = `
+            <div class="comment-box">
+              <b style="color: ${nameColor};">${data.author}</b>
+              ${verifiedBadge}
+              <font size="1" color="#8888aa"> - ${data.date || 'Recently'}</font>
+              <div style="margin-top: 4px;">${data.text}</div>
+              <div class="comment-actions">
+                <a href="javascript:replyTo('${data.author}')" class="comment-action-link">[Reply]</a>
+              </div>
+            </div>
+          `;
+          container.insertAdjacentHTML("beforeend", commentHTML);
+        });
+      });
+
+      // Submit comment
+      window.submitComment = function() {
+        let nameInput = document.getElementById("author-input").value.trim();
+        let textInput = document.getElementById("comment-input").value.trim();
+
+        if (!textInput) {
+          alert("Please write something first!");
+          return;
+        }
+
+        if (!nameInput) {
+          nameInput = "Anonymous";
+        }
+
+        // EVERY comment starts as verified: "no"
+        push(ref(db, "comments"), {
+          postId: currentPostId,
+          author: nameInput,
+          text: textInput,
+          verified: "no", // << Starts as NO for everyone
+          date: new Date().toLocaleDateString(),
+          timestamp: Date.now()
+        }).then(() => {
+          document.getElementById("comment-input").value = "";
+        }).catch((err) => {
+          alert("Error: " + err.message);
+        });
+      };
+
+      // Reply helper
+      window.replyTo = function(authorName) {
+        const input = document.getElementById("comment-input");
+        input.value = `@${authorName} ` + input.value;
+        input.focus();
+      };
+    </script>
+  </body>
+</html>
