@@ -176,6 +176,30 @@
         vertical-align: middle;
       }
 
+      /* RAINBOW VERIFIED CHECKMARK */
+      .rainbow-check {
+        background: linear-gradient(
+          45deg,
+          #ff3333,
+          #ff9900,
+          #ffff33,
+          #33ff33,
+          #33ffff,
+          #3399ff,
+          #cc33ff
+        );
+        color: #ffffff;
+        border-radius: 50%;
+        font-size: 10px;
+        font-weight: bold;
+        padding: 1px 4px;
+        margin-left: 4px;
+        display: inline-block;
+        border: 1px solid #ffffff;
+        vertical-align: middle;
+        text-shadow: 1px 1px 2px #000000;
+      }
+
       .comment-actions {
         font-size: 11px;
         margin-top: 5px;
@@ -317,20 +341,32 @@
         snapshot.forEach((child) => {
           const data = child.val();
           
-          // Check if verified in database
-          const isVerified = data.verified === "yes" || data.verified === true;
-          const nameColor = isVerified ? "#ffff00" : "#00ffff";
+          // Verification logic (Supports "rainbow", "yes", or true)
+          let checkmark = "";
+          let nameColor = "#00ffff";
 
-          // ONLY display the blue checkmark if verified is "yes" (otherwise nothing!)
-          const checkmark = isVerified
-            ? '<span class="blue-check" title="Verified Owner">✓</span>'
-            : '';
+          if (data.verified === "rainbow") {
+            checkmark = '<span class="rainbow-check" title="Rainbow Verified">✓</span>';
+            nameColor = "#ff99ff";
+          } else if (data.verified === "yes" || data.verified === true) {
+            checkmark = '<span class="blue-check" title="Verified Owner">✓</span>';
+            nameColor = "#ffff00";
+          }
+
+          // Format timestamp for when comment was sent
+          let timeSent = "Recently";
+          if (data.timestamp) {
+            const dateObj = new Date(data.timestamp);
+            timeSent = dateObj.toLocaleDateString() + " at " + dateObj.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+          } else if (data.date) {
+            timeSent = data.date + (data.time ? ` at ${data.time}` : '');
+          }
 
           const commentHTML = `
             <div class="comment-box">
               <b style="color: ${nameColor};">${data.author}</b>
               ${checkmark}
-              <font size="1" color="#8888aa"> - ${data.date || 'Recently'}</font>
+              <font size="1" color="#8888aa"> - Sent on ${timeSent}</font>
               <div style="margin-top: 4px;">${data.text}</div>
               <div class="comment-actions">
                 <a href="javascript:replyTo('${data.author}')" class="comment-action-link">[Reply]</a>
@@ -355,13 +391,16 @@
           nameInput = "Anonymous";
         }
 
-        // EVERY comment starts as verified: "no" (no checkmark)
+        const now = new Date();
+
+        // EVERY comment starts as verified: "no"
         push(ref(db, "comments"), {
           postId: currentPostId,
           author: nameInput,
           text: textInput,
           verified: "no",
-          date: new Date().toLocaleDateString(),
+          date: now.toLocaleDateString(),
+          time: now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }),
           timestamp: Date.now()
         }).then(() => {
           document.getElementById("comment-input").value = "";
