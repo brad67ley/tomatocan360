@@ -114,6 +114,7 @@
         font-size: 16px;
         line-height: 1.5;
         color: #ffffff;
+        white-space: pre-wrap; /* Keeps your paragraphs and spacing intact */
       }
 
       /* Retro Comments Section */
@@ -139,6 +140,8 @@
         font-family: Arial, sans-serif;
         font-size: 13px;
         margin-bottom: 8px;
+        width: calc(100% - 15px);
+        max-width: 500px;
       }
 
       .comment-btn {
@@ -162,7 +165,7 @@
         font-size: 13px;
       }
 
-      /* BLUE VERIFIED CHECKMARK */
+      /* Checkmarks */
       .blue-check {
         background-color: #0099ff;
         color: #ffffff;
@@ -176,7 +179,6 @@
         vertical-align: middle;
       }
 
-      /* RAINBOW VERIFIED CHECKMARK */
       .rainbow-check {
         background: linear-gradient(
           45deg,
@@ -241,99 +243,12 @@
 
             <hr size="3" width="90%" color="#c0c0c0" />
 
-            <!-- BLOG POST 1: TWO STEP (LATEST POST) -->
-            <div class="blog-window">
-              <div class="blog-header-bar">
-                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                  <tr>
-                    <td><span class="post-title">Two Step Street View!</span></td>
-                    <td align="right"><span class="rainbow-date">Date: 9/7/26</span></td>
-                  </tr>
-                  <tr>
-                    <td colspan="2" style="padding-top: 6px;">
-                      <font size="2" color="#c0c0c0">
-                        Written by: <b style="color: #ffffff;">TomatoCan360 Owner</b>
-                        &nbsp;<span class="badge-super-fresh">SUPER FRESH</span>
-                      </font>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-
-              <div class="blog-body">
-                <p>
-                  Yesterday I did street view (Car and Trekker!) in this new development called Two Step (The downtown was REALLY cool!).
-                  I uploaded it on Mapillary yesterday but I'm uploading it to street view studio rn!
-                </p>
-              </div>
-
-              <!-- COMMENTS AREA (ID: post-twostep) -->
-              <div class="comment-section">
-                <div class="comment-title">Comments:</div>
-
-                <!-- Input form -->
-                <input type="text" id="author-input-post-twostep" class="comment-input" placeholder="Your Name (or leave blank for Anon)" size="30" />
-                <br />
-                <textarea id="comment-input-post-twostep" class="comment-input" rows="2" cols="65" placeholder="Write a comment..."></textarea>
-                <br />
-                <button type="button" class="comment-btn" onclick="submitComment('post-twostep')">Post Comment</button>
-
-                <!-- REAL COMMENTS LIST -->
-                <div id="comments-list-post-twostep" style="margin-top: 15px;">
-                  <font color="#8888aa" size="2">Loading comments...</font>
-                </div>
-              </div>
+            <!-- POSTS WILL DYNAMICALLY INJECT HERE -->
+            <div id="posts-feed">
+              <center style="padding: 40px;">
+                <font color="#ffff00" size="3"><b>Loading blog posts from database...</b></font>
+              </center>
             </div>
-
-            <br />
-            <hr size="3" width="90%" color="#c0c0c0" />
-            <br />
-
-            <!-- BLOG POST 2: HELLO / FIRST POST -->
-            <div class="blog-window">
-              <div class="blog-header-bar">
-                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                  <tr>
-                    <td><span class="post-title">Hello!</span></td>
-                    <td align="right"><span class="rainbow-date">Date: 9/7/26</span></td>
-                  </tr>
-                  <tr>
-                    <td colspan="2" style="padding-top: 6px;">
-                      <font size="2" color="#c0c0c0">
-                        Written by: <b style="color: #ffffff;">TomatoCan360 Owner</b>
-                      </font>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-
-              <div class="blog-body">
-                <p>
-                  yo yo yo HELLO! this is the new blog ill put updates and photos and such here when I can and when I do!
-                </p>
-              </div>
-
-              <!-- COMMENTS AREA (ID: post-hello-1) -->
-              <div class="comment-section">
-                <div class="comment-title">Comments:</div>
-
-                <!-- Input form -->
-                <input type="text" id="author-input-post-hello-1" class="comment-input" placeholder="Your Name (or leave blank for Anon)" size="30" />
-                <br />
-                <textarea id="comment-input-post-hello-1" class="comment-input" rows="2" cols="65" placeholder="Write a comment..."></textarea>
-                <br />
-                <button type="button" class="comment-btn" onclick="submitComment('post-hello-1')">Post Comment</button>
-
-                <!-- REAL COMMENTS LIST -->
-                <div id="comments-list-post-hello-1" style="margin-top: 15px;">
-                  <font color="#8888aa" size="2">Loading comments...</font>
-                </div>
-              </div>
-            </div>
-
-            <br />
-            <hr size="3" width="90%" color="#c0c0c0" />
-            <br />
 
             <!-- FOOTER -->
             <table width="100%" border="0" cellpadding="10" bgcolor="#000040">
@@ -357,7 +272,6 @@
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
       import { getDatabase, ref, push, onValue, query, orderByChild, equalTo } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
 
-      // YOUR FIREBASE CONFIG
       const firebaseConfig = {
         apiKey: "AIzaSyBg56pode30fZyUd4Rcr8XHfXmc7rKJIgw",
         authDomain: "tomatocan360-comments.firebaseapp.com",
@@ -372,14 +286,89 @@
       const app = initializeApp(firebaseConfig);
       const db = getDatabase(app);
 
-      // Safe HTML escaping helper
       function escapeHTML(str) {
         return String(str || "").replace(/[&<>'"]/g, 
           tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
         );
       }
 
-      // Initialize comment listener for any given post
+      // LOAD ALL POSTS FROM DATABASE
+      const postsRef = ref(db, "posts");
+      const postsFeed = document.getElementById("posts-feed");
+
+      onValue(postsRef, (snapshot) => {
+        postsFeed.innerHTML = "";
+
+        if (!snapshot.exists()) {
+          postsFeed.innerHTML = `
+            <div class="blog-window" style="padding: 20px; text-align: center;">
+              <h3>No posts published yet!</h3>
+              <p>Check back later or add one via the admin dashboard.</p>
+            </div>
+          `;
+          return;
+        }
+
+        // Convert posts to array and sort by timestamp descending (newest first)
+        const posts = [];
+        snapshot.forEach((child) => {
+          posts.push({ id: child.key, ...child.val() });
+        });
+        posts.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+
+        posts.forEach((post, index) => {
+          const isFresh = post.fresh === true || post.fresh === "yes" || index === 0;
+          const freshBadge = isFresh ? '<span class="badge-super-fresh">SUPER FRESH</span>' : '';
+          const postDate = post.date || new Date(post.timestamp || Date.now()).toLocaleDateString();
+
+          const postHTML = `
+            <div class="blog-window" id="window-${post.id}">
+              <div class="blog-header-bar">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td><span class="post-title">${escapeHTML(post.title)}</span></td>
+                    <td align="right"><span class="rainbow-date">Date: ${escapeHTML(postDate)}</span></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="padding-top: 6px;">
+                      <font size="2" color="#c0c0c0">
+                        Written by: <b style="color: #ffffff;">${escapeHTML(post.author || "TomatoCan360 Owner")}</b>
+                        &nbsp;${freshBadge}
+                      </font>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <div class="blog-body">${escapeHTML(post.content)}</div>
+
+              <!-- COMMENTS SECTION -->
+              <div class="comment-section">
+                <div class="comment-title">Comments:</div>
+
+                <input type="text" id="author-input-${post.id}" class="comment-input" placeholder="Your Name (or leave blank for Anon)" />
+                <br />
+                <textarea id="comment-input-${post.id}" class="comment-input" rows="2" placeholder="Write a comment..."></textarea>
+                <br />
+                <button type="button" class="comment-btn" onclick="submitComment('${post.id}')">Post Comment</button>
+
+                <div id="comments-list-${post.id}" style="margin-top: 15px;">
+                  <font color="#8888aa" size="2">Loading comments...</font>
+                </div>
+              </div>
+            </div>
+            <br />
+            <hr size="3" width="90%" color="#c0c0c0" />
+            <br />
+          `;
+          postsFeed.insertAdjacentHTML("beforeend", postHTML);
+
+          // Connect comments to this post
+          setupComments(post.id);
+        });
+      });
+
+      // COMMENT LISTENER PER POST
       function setupComments(postId) {
         const container = document.getElementById(`comments-list-${postId}`);
         if (!container) return;
@@ -396,8 +385,6 @@
 
           snapshot.forEach((child) => {
             const data = child.val();
-            
-            // Verification logic
             let checkmark = "";
             let nameColor = "#00ffff";
 
@@ -409,7 +396,6 @@
               nameColor = "#ffff00";
             }
 
-            // Format timestamp
             let timeSent = "Recently";
             if (data.timestamp) {
               const dateObj = new Date(data.timestamp);
@@ -437,11 +423,7 @@
         });
       }
 
-      // Set up comments for both posts on load
-      setupComments("post-twostep");
-      setupComments("post-hello-1"); // contains the original comments
-
-      // Submit comment per post
+      // POST COMMENT FUNCTION
       window.submitComment = function(postId) {
         const nameInputEl = document.getElementById(`author-input-${postId}`);
         const textInputEl = document.getElementById(`comment-input-${postId}`);
@@ -475,7 +457,7 @@
         });
       };
 
-      // Reply helper targeted to specific post
+      // REPLY FUNCTION
       window.replyTo = function(postId, authorName) {
         const input = document.getElementById(`comment-input-${postId}`);
         if (input) {
