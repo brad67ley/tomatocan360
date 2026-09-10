@@ -1,492 +1,488 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8" />
-  <title>Tomato Can 360 Official Blog</title>
-  <style>
-    body {
-      background-color: #000030;
-      color: #ffffff;
-      font-family: Arial, sans-serif;
-    }
+  <head>
+    <title>Tomato Can 360 - Official Blog</title>
+    <style>
+      body {
+        background-color: #000080;
+        color: #ffffff;
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      a:link { color: #ffff00; text-decoration: underline; }
+      a:visited { color: #ffcc00; text-decoration: underline; }
+      a:active { color: #ff0000; text-decoration: underline; }
+      a:hover { color: #ffffff; }
 
-    h1, h2, h3 {
-      font-family: "Times New Roman", Times, serif;
-      margin-bottom: 5px;
-    }
+      h1, h2, h3 {
+        font-family: "Times New Roman", Times, serif;
+        margin-bottom: 5px;
+      }
 
-    /* Navbar Buttons */
-    .button-link {
-      background-color: #c0c0c0;
-      color: #000000 !important;
-      border: 3px outset #ffffff;
-      text-decoration: none !important;
-      padding: 2px 10px;
-      font-weight: bold;
-      font-family: Arial, sans-serif;
-      font-size: 14px;
-    }
-    .button-link-blog {
-      background-color: #ffcc00;
-      color: #000000 !important;
-      border: 3px outset #ffffff;
-      text-decoration: none !important;
-      padding: 2px 10px;
-      font-weight: bold;
-      font-family: Arial, sans-serif;
-      font-size: 14px;
-    }
-    .button-link-red {
-      background-color: #ff0000;
-      color: #ffffff !important;
-      border: 3px outset #ffffff;
-      text-decoration: none !important;
-      padding: 2px 10px;
-      font-weight: bold;
-      font-family: Arial, sans-serif;
-      font-size: 14px;
-    }
+      /* Navbar Buttons */
+      .button-link {
+        background-color: #c0c0c0;
+        color: #000000 !important;
+        border: 3px outset #ffffff;
+        text-decoration: none !important;
+        padding: 2px 10px;
+        font-weight: bold;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+      }
+      .button-link-blog {
+        background-color: #ffcc00;
+        color: #000000 !important;
+        border: 3px outset #ffffff;
+        text-decoration: none !important;
+        padding: 2px 10px;
+        font-weight: bold;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+      }
+      .button-link-red {
+        background-color: #ff0000;
+        color: #ffffff !important;
+        border: 3px outset #ffffff;
+        text-decoration: none !important;
+        padding: 2px 10px;
+        font-weight: bold;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+      }
 
-    /* Blog Post Window */
-    .blog-window {
-      background-color: #000050;
-      border: 3px outset #ffffff;
-      box-shadow: 4px 4px 0px #000020;
-      margin-top: 25px;
-      margin-bottom: 30px;
-      text-align: left;
-    }
+      /* Blog Post Window */
+      .blog-window {
+        background-color: #000050;
+        border: 3px outset #ffffff;
+        box-shadow: 4px 4px 0px #000020;
+        margin-top: 25px;
+        margin-bottom: 30px;
+        text-align: left;
+      }
 
-    .blog-header-bar {
-      background: linear-gradient(to right, #000033, #000066);
-      border-bottom: 2px groove #ffffff;
-      padding: 10px 15px;
-    }
+      .blog-header-bar {
+        background: linear-gradient(to right, #000033, #000066);
+        border-bottom: 2px groove #ffffff;
+        padding: 10px 15px;
+      }
 
-    .post-title {
-      color: #00ffff;
-      font-size: 26px;
-      font-family: "Times New Roman", Times, serif;
-      font-weight: bold;
-      letter-spacing: 1px;
-      text-shadow: 1px 1px 4px #0055ff;
-      margin: 0;
-    }
+      .post-title {
+        color: #00ffff;
+        font-size: 26px;
+        font-family: "Times New Roman", Times, serif;
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-shadow: 1px 1px 4px #0055ff;
+        margin: 0;
+      }
 
-    .rainbow-date {
-      background: linear-gradient(
-        to right,
-        #ff3333,
-        #ff9900,
-        #ffff33,
-        #33ff33,
-        #33ffff,
-        #3399ff,
-        #cc33ff
-      );
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-weight: bold;
-      font-size: 14px;
-      display: inline-block;
-      letter-spacing: 1px;
-    }
+      .rainbow-date {
+        background: linear-gradient(
+          to right,
+          #ff3333,
+          #ff9900,
+          #ffff33,
+          #33ff33,
+          #33ffff,
+          #3399ff,
+          #cc33ff
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+        font-size: 14px;
+        display: inline-block;
+        letter-spacing: 1px;
+      }
 
-    .badge-super-fresh {
-      background: linear-gradient(to bottom, #ff9900, #ff3300);
-      color: #ffffff;
-      font-size: 11px;
-      font-weight: bold;
-      padding: 2px 7px;
-      border: 1px outset #ffffff;
-      letter-spacing: 1px;
-      text-shadow: 1px 1px 1px #000000;
-      display: inline-block;
-    }
+      .badge-super-fresh {
+        background: linear-gradient(to bottom, #ff9900, #ff3300);
+        color: #ffffff;
+        font-size: 11px;
+        font-weight: bold;
+        padding: 2px 7px;
+        border: 1px outset #ffffff;
+        letter-spacing: 1px;
+        text-shadow: 1px 1px 1px #000000;
+        display: inline-block;
+      }
 
-    .blog-body {
-      padding: 18px;
-      font-size: 16px;
-      line-height: 1.5;
-      color: #ffffff;
-    }
+      .blog-body {
+        padding: 18px;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #ffffff;
+      }
 
-    /* Retro Comments Section */
-    .comment-section {
-      background-color: #000038;
-      border-top: 2px inset #ffffff;
-      padding: 15px;
-    }
+      /* Retro Comments Section */
+      .comment-section {
+        background-color: #000038;
+        border-top: 2px inset #ffffff;
+        padding: 15px;
+      }
 
-    .comment-title {
-      font-size: 14px;
-      font-weight: bold;
-      color: #ffff00;
-      margin-bottom: 10px;
-      text-transform: uppercase;
-    }
+      .comment-title {
+        font-size: 14px;
+        font-weight: bold;
+        color: #ffff00;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+      }
 
-    .comment-input {
-      background-color: #000022;
-      color: #ffffff;
-      border: 2px inset #ffffff;
-      padding: 4px 6px;
-      font-family: Arial, sans-serif;
-      font-size: 13px;
-      margin-bottom: 8px;
-      box-sizing: border-box;
-      max-width: 100%;
-    }
+      .comment-input {
+        background-color: #000022;
+        color: #ffffff;
+        border: 2px inset #ffffff;
+        padding: 4px 6px;
+        font-family: Arial, sans-serif;
+        font-size: 13px;
+        margin-bottom: 8px;
+      }
 
-    .comment-btn {
-      background-color: #c0c0c0;
-      color: #000000;
-      border: 2px outset #ffffff;
-      font-weight: bold;
-      padding: 3px 12px;
-      cursor: pointer;
-      font-size: 13px;
-    }
-    .comment-btn:active {
-      border: 2px inset #ffffff;
-    }
+      .comment-btn {
+        background-color: #c0c0c0;
+        color: #000000;
+        border: 2px outset #ffffff;
+        font-weight: bold;
+        padding: 3px 12px;
+        cursor: pointer;
+        font-size: 13px;
+      }
+      .comment-btn:active {
+        border: 2px inset #ffffff;
+      }
 
-    .comment-box {
-      background-color: #000028;
-      border: 1px solid #666699;
-      padding: 8px 10px;
-      margin-top: 8px;
-      font-size: 13px;
-    }
+      .comment-box {
+        background-color: #000028;
+        border: 1px solid #666699;
+        padding: 8px 10px;
+        margin-top: 8px;
+        font-size: 13px;
+      }
 
-    /* BLUE VERIFIED CHECKMARK */
-    .blue-check {
-      background-color: #0099ff;
-      color: #ffffff;
-      border-radius: 50%;
-      font-size: 10px;
-      font-weight: bold;
-      padding: 1px 4px;
-      margin-left: 4px;
-      display: inline-block;
-      border: 1px solid #ffffff;
-      vertical-align: middle;
-    }
+      /* BLUE VERIFIED CHECKMARK */
+      .blue-check {
+        background-color: #0099ff;
+        color: #ffffff;
+        border-radius: 50%;
+        font-size: 10px;
+        font-weight: bold;
+        padding: 1px 4px;
+        margin-left: 4px;
+        display: inline-block;
+        border: 1px solid #ffffff;
+        vertical-align: middle;
+      }
 
-    /* RAINBOW VERIFIED CHECKMARK */
-    .rainbow-check {
-      background: linear-gradient(
-        45deg,
-        #ff3333,
-        #ff9900,
-        #ffff33,
-        #33ff33,
-        #33ffff,
-        #3399ff,
-        #cc33ff
-      );
-      color: #ffffff;
-      border-radius: 50%;
-      font-size: 10px;
-      font-weight: bold;
-      padding: 1px 4px;
-      margin-left: 4px;
-      display: inline-block;
-      border: 1px solid #ffffff;
-      vertical-align: middle;
-      text-shadow: 1px 1px 2px #000000;
-    }
+      /* RAINBOW VERIFIED CHECKMARK */
+      .rainbow-check {
+        background: linear-gradient(
+          45deg,
+          #ff3333,
+          #ff9900,
+          #ffff33,
+          #33ff33,
+          #33ffff,
+          #3399ff,
+          #cc33ff
+        );
+        color: #ffffff;
+        border-radius: 50%;
+        font-size: 10px;
+        font-weight: bold;
+        padding: 1px 4px;
+        margin-left: 4px;
+        display: inline-block;
+        border: 1px solid #ffffff;
+        vertical-align: middle;
+        text-shadow: 1px 1px 2px #000000;
+      }
 
-    .comment-actions {
-      font-size: 11px;
-      margin-top: 5px;
-    }
-    .comment-action-link {
-      color: #ffff00 !important;
-      cursor: pointer;
-      text-decoration: underline;
-    }
-  </style>
-</head>
-<body>
-  <center>
-    <table width="800" border="0" cellpadding="0" cellspacing="0">
-      <tr>
-        <td>
-          <center>
-            <h1>Tomato Can 360 <font color="#FF6347">Official Blog</font></h1>
-            <p><font size="3">I post whatever here.</font></p>
-            <p>
-              <a href="admin.html" class="button-link-blog" style="font-size: 11px; padding: 2px 6px;">[Admin: Add New Post]</a>
-            </p>
-          </center>
+      .comment-actions {
+        font-size: 11px;
+        margin-top: 5px;
+      }
+      .comment-action-link {
+        color: #ffff00 !important;
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+      <table width="800" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <!-- NAVBAR -->
+            <table width="100%" border="2" cellpadding="8" bgcolor="#000040" bordercolor="#ffffff">
+              <tr>
+                <td width="28%">
+                  <b><font size="5" color="#FF6347" face="Arial">Tomato Can 360</font></b>
+                </td>
+                <td width="72%" align="right">
+                  <font face="Arial" size="3">
+                    <a href="index.html">Home</a> &nbsp;|&nbsp;
+                    <a href="index.html#coverage">Coverage</a> &nbsp;&nbsp;&nbsp;
+                    <a class="button-link-blog" href="blog.html">Blog</a> &nbsp;&nbsp;
+                    <a class="button-link" href="/tomatocan90">TC90 Link</a> &nbsp;&nbsp;
+                    <a class="button-link-red" href="openguessr.html">OpenGuessr Map</a>
+                  </font>
+                </td>
+              </tr>
+            </table>
 
-          <hr size="3" width="90%" color="#c0c0c0" />
-
-          <!-- DYNAMIC POSTS CONTAINER -->
-          <div id="blog-posts-container">
-            <center style="padding: 40px;">
-              <font color="#ffff00" size="3">Loading blog posts from satellite server...</font>
+            <center>
+              <h1>Tomato Can 360 <font color="#FF6347">Official Blog</font></h1>
+              <p><font size="3">I post whatever here.</font></p>
             </center>
-          </div>
 
-          <!-- FOOTER -->
-          <table width="100%" border="0" cellpadding="10" bgcolor="#000040">
-            <tr>
-              <td align="center">
-                <font size="2" face="Arial" color="#c0c0c0">
-                  &copy; Coverage Project.<br />
-                  Best viewed in Netscape Navigator 4.0 or Internet Explorer 5.0 at 800x600 resolution.
-                </font>
-              </td>
-            </tr>
-          </table>
+            <hr size="3" width="90%" color="#c0c0c0" />
 
-        </td>
-      </tr>
-    </table>
-  </center>
+            <!-- BLOG POST 1: TWO STEP (LATEST POST) -->
+            <div class="blog-window">
+              <div class="blog-header-bar">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td><span class="post-title">Two Step Street View!</span></td>
+                    <td align="right"><span class="rainbow-date">Date: 9/7/26</span></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="padding-top: 6px;">
+                      <font size="2" color="#c0c0c0">
+                        Written by: <b style="color: #ffffff;">TomatoCan360 Owner</b>
+                        &nbsp;<span class="badge-super-fresh">SUPER FRESH</span>
+                      </font>
+                    </td>
+                  </tr>
+                </table>
+              </div>
 
-  <!-- FIREBASE MODULE SCRIPT -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-    import { getDatabase, ref, push, set, onValue, query, orderByChild, equalTo } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
+              <div class="blog-body">
+                <p>
+                  Yesterday I did street view (Car and Trekker!) in this new development called Two Step (The downtown was REALLY cool!).
+                  I uploaded it on Mapillary yesterday but I'm uploading it to street view studio rn!
+                </p>
+              </div>
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyBg56pode30fZyUd4Rcr8XHfXmc7rKJIgw",
-      authDomain: "tomatocan360-comments.firebaseapp.com",
-      databaseURL: "https://tomatocan360-comments-default-rtdb.firebaseio.com",
-      projectId: "tomatocan360-comments",
-      storageBucket: "tomatocan360-comments.firebasestorage.app",
-      messagingSenderId: "134319569778",
-      appId: "1:134319569778:web:d658fd0136447cac883beb",
-      measurementId: "G-0PS9FL17FW"
-    };
+              <!-- COMMENTS AREA (ID: post-twostep) -->
+              <div class="comment-section">
+                <div class="comment-title">Comments:</div>
 
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
+                <!-- Input form -->
+                <input type="text" id="author-input-post-twostep" class="comment-input" placeholder="Your Name (or leave blank for Anon)" size="30" />
+                <br />
+                <textarea id="comment-input-post-twostep" class="comment-input" rows="2" cols="65" placeholder="Write a comment..."></textarea>
+                <br />
+                <button type="button" class="comment-btn" onclick="submitComment('post-twostep')">Post Comment</button>
 
-    // Initial defaults to auto-seed if database is empty so your original comments stay intact!
-    const defaultPosts = {
-      "post-twostep": {
-        postId: "post-twostep",
-        title: "Two Step Street View!",
-        author: "TomatoCan360 Owner",
-        date: "9/7/26",
-        badge: "SUPER FRESH",
-        body: "Yesterday I did street view (Car and Trekker!) in this new development called Two Step (The downtown was REALLY cool!).\nI uploaded it on Mapillary yesterday but I'm uploading it to street view studio rn!",
-        timestamp: 1788785000000
-      },
-      "post-hello-1": {
-        postId: "post-hello-1",
-        title: "Hello!",
-        author: "TomatoCan360 Owner",
-        date: "9/7/26",
-        badge: "",
-        body: "yo yo yo HELLO! this is the new blog ill put updates and photos and such here when I can and when I do!",
-        timestamp: 1788780000000
-      }
-    };
-
-    function escapeHTML(str) {
-      return String(str || "").replace(/[&<>'"]/g, 
-        tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
-      );
-    }
-
-    // Keep track of active comment listeners to avoid memory leaks
-    let activeCommentUnsubscribers = [];
-
-    // Listen for posts in real-time
-    const postsRef = ref(db, "posts");
-    onValue(postsRef, async (snapshot) => {
-      const postsContainer = document.getElementById("blog-posts-container");
-
-      // If database has no posts node yet, auto-seed the original 2 posts so old comments connect!
-      if (!snapshot.exists()) {
-        await set(ref(db, "posts/post-twostep"), defaultPosts["post-twostep"]);
-        await set(ref(db, "posts/post-hello-1"), defaultPosts["post-hello-1"]);
-        return; // will re-trigger onValue automatically
-      }
-
-      // Cleanup old comment listeners before redrawing
-      activeCommentUnsubscribers.forEach(unsub => unsub());
-      activeCommentUnsubscribers = [];
-
-      const postsArray = [];
-      snapshot.forEach(child => {
-        const p = child.val();
-        postsArray.push({
-          id: p.postId || child.key,
-          ...p
-        });
-      });
-
-      // Sort newest post first
-      postsArray.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
-
-      postsContainer.innerHTML = "";
-
-      postsArray.forEach(post => {
-        const postId = post.id;
-        const cleanTitle = escapeHTML(post.title || "Untitled Post");
-        const cleanDate = escapeHTML(post.date || "Unknown Date");
-        const cleanAuthor = escapeHTML(post.author || "TomatoCan360 Owner");
-        
-        // Convert line breaks to paragraphs/br
-        const cleanBody = escapeHTML(post.body || "").replace(/\n/g, "<br />");
-
-        const badgeHtml = post.badge 
-          ? `&nbsp;<span class="badge-super-fresh">${escapeHTML(post.badge)}</span>` 
-          : "";
-
-        const postHTML = `
-          <div class="blog-window" id="window-${postId}">
-            <div class="blog-header-bar">
-              <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td><span class="post-title">${cleanTitle}</span></td>
-                  <td align="right"><span class="rainbow-date">Date: ${cleanDate}</span></td>
-                </tr>
-                <tr>
-                  <td colspan="2" style="padding-top: 6px;">
-                    <font size="2" color="#c0c0c0">
-                      Written by: <b style="color: #ffffff;">${cleanAuthor}</b>
-                      ${badgeHtml}
-                    </font>
-                  </td>
-                </tr>
-              </table>
-            </div>
-
-            <div class="blog-body">
-              <p>${cleanBody}</p>
-            </div>
-
-            <!-- Retro Comments Area -->
-            <div class="comment-section">
-              <div class="comment-title">Comments:</div>
-
-              <input type="text" id="author-input-${postId}" class="comment-input" placeholder="Your Name (or leave blank for Anon)" size="30" />
-              <br />
-              <textarea id="comment-input-${postId}" class="comment-input" rows="2" cols="65" placeholder="Write a comment..."></textarea>
-              <br />
-              <button type="button" class="comment-btn" onclick="submitComment('${postId}')">Post Comment</button>
-
-              <div id="comments-list-${postId}" style="margin-top: 15px;">
-                <font color="#8888aa" size="2">Loading comments...</font>
+                <!-- REAL COMMENTS LIST -->
+                <div id="comments-list-post-twostep" style="margin-top: 15px;">
+                  <font color="#8888aa" size="2">Loading comments...</font>
+                </div>
               </div>
             </div>
-          </div>
-          <br />
-          <hr size="3" width="90%" color="#c0c0c0" />
-          <br />
-        `;
 
-        postsContainer.insertAdjacentHTML("beforeend", postHTML);
-        setupComments(postId);
-      });
-    });
+            <br />
+            <hr size="3" width="90%" color="#c0c0c0" />
+            <br />
 
-    // Initialize comment listener per post
-    function setupComments(postId) {
-      const container = document.getElementById(`comments-list-${postId}`);
-      if (!container) return;
+            <!-- BLOG POST 2: HELLO / FIRST POST -->
+            <div class="blog-window">
+              <div class="blog-header-bar">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td><span class="post-title">Hello!</span></td>
+                    <td align="right"><span class="rainbow-date">Date: 9/7/26</span></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="padding-top: 6px;">
+                      <font size="2" color="#c0c0c0">
+                        Written by: <b style="color: #ffffff;">TomatoCan360 Owner</b>
+                      </font>
+                    </td>
+                  </tr>
+                </table>
+              </div>
 
-      const commentsQuery = query(ref(db, "comments"), orderByChild("postId"), equalTo(postId));
+              <div class="blog-body">
+                <p>
+                  yo yo yo HELLO! this is the new blog ill put updates and photos and such here when I can and when I do!
+                </p>
+              </div>
 
-      const unsub = onValue(commentsQuery, (snapshot) => {
-        container.innerHTML = "";
+              <!-- COMMENTS AREA (ID: post-hello-1) -->
+              <div class="comment-section">
+                <div class="comment-title">Comments:</div>
 
-        if (!snapshot.exists()) {
-          container.innerHTML = '<font color="#8888aa" size="2">No comments yet! Be the first to say something.</font>';
+                <!-- Input form -->
+                <input type="text" id="author-input-post-hello-1" class="comment-input" placeholder="Your Name (or leave blank for Anon)" size="30" />
+                <br />
+                <textarea id="comment-input-post-hello-1" class="comment-input" rows="2" cols="65" placeholder="Write a comment..."></textarea>
+                <br />
+                <button type="button" class="comment-btn" onclick="submitComment('post-hello-1')">Post Comment</button>
+
+                <!-- REAL COMMENTS LIST -->
+                <div id="comments-list-post-hello-1" style="margin-top: 15px;">
+                  <font color="#8888aa" size="2">Loading comments...</font>
+                </div>
+              </div>
+            </div>
+
+            <br />
+            <hr size="3" width="90%" color="#c0c0c0" />
+            <br />
+
+            <!-- FOOTER -->
+            <table width="100%" border="0" cellpadding="10" bgcolor="#000040">
+              <tr>
+                <td align="center">
+                  <font size="2" face="Arial" color="#c0c0c0">
+                    &copy; Coverage Project.<br />
+                    Best viewed in Netscape Navigator 4.0 or Internet Explorer 5.0 at 800x600 resolution.
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+    </center>
+
+    <!-- FIREBASE MODULE SCRIPT -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+      import { getDatabase, ref, push, onValue, query, orderByChild, equalTo } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
+
+      // YOUR FIREBASE CONFIG
+      const firebaseConfig = {
+        apiKey: "AIzaSyBg56pode30fZyUd4Rcr8XHfXmc7rKJIgw",
+        authDomain: "tomatocan360-comments.firebaseapp.com",
+        databaseURL: "https://tomatocan360-comments-default-rtdb.firebaseio.com",
+        projectId: "tomatocan360-comments",
+        storageBucket: "tomatocan360-comments.firebasestorage.app",
+        messagingSenderId: "134319569778",
+        appId: "1:134319569778:web:d658fd0136447cac883beb",
+        measurementId: "G-0PS9FL17FW"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getDatabase(app);
+
+      // Safe HTML escaping helper
+      function escapeHTML(str) {
+        return String(str || "").replace(/[&<>'"]/g, 
+          tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+        );
+      }
+
+      // Initialize comment listener for any given post
+      function setupComments(postId) {
+        const container = document.getElementById(`comments-list-${postId}`);
+        if (!container) return;
+
+        const commentsQuery = query(ref(db, "comments"), orderByChild("postId"), equalTo(postId));
+
+        onValue(commentsQuery, (snapshot) => {
+          container.innerHTML = "";
+
+          if (!snapshot.exists()) {
+            container.innerHTML = '<font color="#8888aa" size="2">No comments yet! Be the first to say something.</font>';
+            return;
+          }
+
+          snapshot.forEach((child) => {
+            const data = child.val();
+            
+            // Verification logic
+            let checkmark = "";
+            let nameColor = "#00ffff";
+
+            if (data.verified === "rainbow") {
+              checkmark = '<span class="rainbow-check" title="Rainbow Verified">✓</span>';
+              nameColor = "#ff99ff";
+            } else if (data.verified === "yes" || data.verified === true) {
+              checkmark = '<span class="blue-check" title="Verified Owner">✓</span>';
+              nameColor = "#ffff00";
+            }
+
+            // Format timestamp
+            let timeSent = "Recently";
+            if (data.timestamp) {
+              const dateObj = new Date(data.timestamp);
+              timeSent = dateObj.toLocaleDateString() + " at " + dateObj.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+            } else if (data.date) {
+              timeSent = data.date + (data.time ? ` at ${data.time}` : '');
+            }
+
+            const cleanAuthor = escapeHTML(data.author);
+            const cleanText = escapeHTML(data.text);
+
+            const commentHTML = `
+              <div class="comment-box">
+                <b style="color: ${nameColor};">${cleanAuthor}</b>
+                ${checkmark}
+                <font size="1" color="#8888aa"> - Sent on ${timeSent}</font>
+                <div style="margin-top: 4px;">${cleanText}</div>
+                <div class="comment-actions">
+                  <a href="javascript:void(0)" onclick="replyTo('${postId}', '${cleanAuthor.replace(/'/g, "\\'")}')" class="comment-action-link">[Reply]</a>
+                </div>
+              </div>
+            `;
+            container.insertAdjacentHTML("beforeend", commentHTML);
+          });
+        });
+      }
+
+      // Set up comments for both posts on load
+      setupComments("post-twostep");
+      setupComments("post-hello-1"); // contains the original comments
+
+      // Submit comment per post
+      window.submitComment = function(postId) {
+        const nameInputEl = document.getElementById(`author-input-${postId}`);
+        const textInputEl = document.getElementById(`comment-input-${postId}`);
+
+        let nameInput = nameInputEl.value.trim();
+        let textInput = textInputEl.value.trim();
+
+        if (!textInput) {
+          alert("Please write something first!");
           return;
         }
 
-        snapshot.forEach((child) => {
-          const data = child.val();
-          
-          let checkmark = "";
-          let nameColor = "#00ffff";
+        if (!nameInput) {
+          nameInput = "Anonymous";
+        }
 
-          if (data.verified === "rainbow") {
-            checkmark = '<span class="rainbow-check" title="Rainbow Verified">✓</span>';
-            nameColor = "#ff99ff";
-          } else if (data.verified === "yes" || data.verified === true) {
-            checkmark = '<span class="blue-check" title="Verified Owner">✓</span>';
-            nameColor = "#ffff00";
-          }
+        const now = new Date();
 
-          let timeSent = "Recently";
-          if (data.timestamp) {
-            const dateObj = new Date(data.timestamp);
-            timeSent = dateObj.toLocaleDateString() + " at " + dateObj.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
-          } else if (data.date) {
-            timeSent = data.date + (data.time ? ` at ${data.time}` : '');
-          }
-
-          const cleanAuthor = escapeHTML(data.author);
-          const cleanText = escapeHTML(data.text);
-
-          const commentHTML = `
-            <div class="comment-box">
-              <b style="color: ${nameColor};">${cleanAuthor}</b>
-              ${checkmark}
-              <font size="1" color="#8888aa"> - Sent on ${timeSent}</font>
-              <div style="margin-top: 4px;">${cleanText}</div>
-              <div class="comment-actions">
-                <a href="javascript:void(0)" onclick="replyTo('${postId}', '${cleanAuthor.replace(/'/g, "\\'")}')" class="comment-action-link">[Reply]</a>
-              </div>
-            </div>
-          `;
-          container.insertAdjacentHTML("beforeend", commentHTML);
+        push(ref(db, "comments"), {
+          postId: postId,
+          author: nameInput,
+          text: textInput,
+          verified: "no",
+          date: now.toLocaleDateString(),
+          time: now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }),
+          timestamp: Date.now()
+        }).then(() => {
+          textInputEl.value = "";
+        }).catch((err) => {
+          alert("Error: " + err.message);
         });
-      });
+      };
 
-      activeCommentUnsubscribers.push(unsub);
-    }
-
-    // Submit comment per post
-    window.submitComment = function(postId) {
-      const nameInputEl = document.getElementById(`author-input-${postId}`);
-      const textInputEl = document.getElementById(`comment-input-${postId}`);
-
-      let nameInput = nameInputEl.value.trim();
-      let textInput = textInputEl.value.trim();
-
-      if (!textInput) {
-        alert("Please write something first!");
-        return;
-      }
-
-      if (!nameInput) {
-        nameInput = "Anonymous";
-      }
-
-      const now = new Date();
-
-      push(ref(db, "comments"), {
-        postId: postId,
-        author: nameInput,
-        text: textInput,
-        verified: "no",
-        date: now.toLocaleDateString(),
-        time: now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }),
-        timestamp: Date.now()
-      }).then(() => {
-        textInputEl.value = "";
-      }).catch((err) => {
-        alert("Error: " + err.message);
-      });
-    };
-
-    window.replyTo = function(postId, authorName) {
-      const input = document.getElementById(`comment-input-${postId}`);
-      if (input) {
-        input.value = `@${authorName} ` + input.value;
-        input.focus();
-      }
-    };
-  </script>
-</body>
+      // Reply helper targeted to specific post
+      window.replyTo = function(postId, authorName) {
+        const input = document.getElementById(`comment-input-${postId}`);
+        if (input) {
+          input.value = `@${authorName} ` + input.value;
+          input.focus();
+        }
+      };
+    </script>
+  </body>
 </html>
