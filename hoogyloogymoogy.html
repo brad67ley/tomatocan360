@@ -1,194 +1,131 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Tomato Can 360 - Webmaster Admin Terminal</title>
+    <title>Tomato Can 360 - Secret Admin Post Portal</title>
     <style>
       body {
-        background-color: #008080;
+        background-color: #000080;
         color: #ffffff;
         font-family: Arial, Helvetica, sans-serif;
         margin: 20px;
-        padding: 0;
       }
-      a:link { color: #ffff00; }
-      a:visited { color: #ffff00; }
-
-      .admin-window {
-        width: 760px;
-        background-color: #c0c0c0;
+      h1, h2, h3 {
+        font-family: "Times New Roman", Times, serif;
+      }
+      .panel-window {
+        background-color: #000050;
         border: 3px outset #ffffff;
-        box-shadow: 6px 6px 0px #004040;
-        color: #000000;
-        margin: 0 auto;
-        padding: 4px;
+        box-shadow: 4px 4px 0px #000020;
+        max-width: 750px;
+        margin: 0 auto 30px auto;
+        padding: 20px;
       }
-
-      .window-header {
-        background: linear-gradient(to right, #000080, #1084d0);
-        color: #ffffff;
-        font-weight: bold;
-        font-size: 14px;
-        padding: 4px 8px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+      .header-bar {
+        background: linear-gradient(to right, #000033, #000066);
+        border-bottom: 2px groove #ffffff;
+        padding: 10px;
+        margin: -20px -20px 20px -20px;
       }
-
-      .window-content {
-        padding: 18px;
-        background-color: #d4d0c8;
-      }
-
-      fieldset {
-        border: 2px groove #ffffff;
-        margin-bottom: 16px;
-        padding: 12px;
-      }
-
-      legend {
-        font-weight: bold;
-        color: #000080;
-        padding: 0 6px;
-        font-size: 13px;
-      }
-
       label {
-        font-size: 13px;
         font-weight: bold;
+        color: #ffff00;
         display: block;
-        margin-top: 8px;
-        margin-bottom: 3px;
+        margin-top: 12px;
+        margin-bottom: 4px;
+        font-size: 14px;
       }
-
-      input[type="text"], input[type="password"], textarea, select {
-        width: 100%;
-        box-sizing: border-box;
+      input[type="text"], textarea {
+        width: 97%;
+        background-color: #000022;
+        color: #ffffff;
         border: 2px inset #ffffff;
-        background-color: #ffffff;
-        color: #000000;
+        padding: 8px;
         font-family: Arial, sans-serif;
-        font-size: 13px;
-        padding: 5px;
+        font-size: 14px;
       }
-
-      .admin-btn {
+      .checkbox-container {
+        margin: 15px 0;
+        color: #00ffff;
+        font-size: 14px;
+      }
+      .action-btn {
         background-color: #c0c0c0;
         color: #000000;
-        border: 2px outset #ffffff;
+        border: 3px outset #ffffff;
         font-weight: bold;
-        padding: 6px 18px;
-        font-size: 14px;
+        padding: 6px 20px;
+        font-size: 15px;
         cursor: pointer;
       }
-      .admin-btn:active {
-        border: 2px inset #ffffff;
+      .action-btn:active {
+        border: 3px inset #ffffff;
       }
-      .btn-danger {
-        background-color: #ffcccc;
-        border: 2px outset #ffffff;
+      .status-box {
+        margin-top: 15px;
         font-weight: bold;
-        color: #990000;
+      }
+      .post-item {
+        background: #000030;
+        border: 1px solid #666699;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+      .delete-btn {
+        background: #ff0000;
+        color: white;
+        border: 2px outset #fff;
         padding: 2px 8px;
-        cursor: pointer;
         font-size: 11px;
-      }
-
-      .post-item-row {
-        background-color: #ffffff;
-        border: 1px solid #7f9db9;
-        padding: 8px;
-        margin-bottom: 8px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      #auth-box {
-        text-align: center;
-        padding: 30px;
+        cursor: pointer;
+        font-weight: bold;
       }
     </style>
   </head>
   <body>
-    <div class="admin-window">
-      <div class="window-header">
-        <span>🍅 Tomato Can 360 - Admin Control Panel [SECRET]</span>
-        <span style="font-size: 11px;">v2.0 Webmaster Edition</span>
+    <div class="panel-window">
+      <div class="header-bar">
+        <h2 style="margin: 0; color: #ff6347;">Tomato Can 360 - Secret Blog Manager</h2>
+        <small style="color: #c0c0c0;">Unlisted admin page - Create posts directly to Firebase</small>
       </div>
 
-      <div class="window-content">
-        <!-- PASSWORD LOCK -->
-        <div id="auth-box">
-          <p><b>Please enter your Webmaster Secret Passcode to unlock:</b></p>
-          <input type="password" id="admin-pass" placeholder="Enter PIN (Default: 360)" style="width: 220px; text-align: center;" />
-          <br /><br />
-          <button class="admin-btn" onclick="checkAuth()">Unlock Panel</button>
+      <form id="post-form" onsubmit="publishPost(event)">
+        <label for="title">Post Title:</label>
+        <input type="text" id="title" placeholder="e.g. Downtown Trekker Update!" required />
+
+        <label for="author">Author Name:</label>
+        <input type="text" id="author" value="TomatoCan360 Owner" required />
+
+        <label for="date">Display Date (default is today):</label>
+        <input type="text" id="date" />
+
+        <div class="checkbox-container">
+          <input type="checkbox" id="super-fresh" checked />
+          <label for="super-fresh" style="display:inline; color:#ff9900;">Show "SUPER FRESH" badge?</label>
         </div>
 
-        <!-- MAIN ADMIN INTERFACE (HIDDEN BY DEFAULT) -->
-        <div id="admin-main" style="display: none;">
-          <div style="background-color: #ffffcc; border: 1px solid #999900; padding: 6px; font-size: 12px; margin-bottom: 12px;">
-            <b>Connected!</b> Any post published here will instantly appear on your live blog without touching HTML!
-          </div>
+        <label for="content">Post Content:</label>
+        <textarea id="content" rows="9" placeholder="Write your blog post here... Line breaks will be preserved." required></textarea>
 
-          <!-- CREATE POST -->
-          <fieldset>
-            <legend>Create & Publish New Blog Post</legend>
-            <form id="new-post-form" onsubmit="event.preventDefault(); publishNewPost();">
-              <label for="post-title">Post Title:</label>
-              <input type="text" id="post-title" placeholder="e.g. New 360 Coverage in Town!" required />
+        <br /><br />
+        <button type="submit" class="action-btn" id="submit-btn">Publish to Blog</button>
+      </form>
 
-              <div style="display: flex; gap: 10px;">
-                <div style="flex: 1;">
-                  <label for="post-author">Author Name:</label>
-                  <input type="text" id="post-author" value="TomatoCan360 Owner" required />
-                </div>
-                <div style="flex: 1;">
-                  <label for="post-date">Display Date (Leave blank for today):</label>
-                  <input type="text" id="post-date" placeholder="e.g. 9/11/26" />
-                </div>
-                <div style="flex: 1;">
-                  <label for="post-badge">Header Badge:</label>
-                  <select id="post-badge">
-                    <option value="SUPER FRESH">SUPER FRESH (Orange/Red)</option>
-                    <option value="NEW UPDATE">NEW UPDATE</option>
-                    <option value="SPECIAL">SPECIAL</option>
-                    <option value="">(No Badge)</option>
-                  </select>
-                </div>
-              </div>
+      <div id="status-msg" class="status-box"></div>
+    </div>
 
-              <label for="post-body">Post Content (HTML allowed or normal text):</label>
-              <textarea id="post-body" rows="6" placeholder="Write whatever you want here..." required></textarea>
-
-              <div style="margin-top: 14px; text-align: right;">
-                <button type="submit" class="admin-btn" style="background-color: #d4ffd4;">🚀 Publish Post Live</button>
-              </div>
-            </form>
-          </fieldset>
-
-          <!-- MANAGE POSTS -->
-          <fieldset>
-            <legend>Existing Blog Posts Manager</legend>
-            <div id="admin-posts-list">
-              <em>Loading database posts...</em>
-            </div>
-            <div style="margin-top: 10px; text-align: left;">
-              <button type="button" class="admin-btn" style="font-size: 11px;" onclick="restoreDefaults()">🔄 Re-seed Original Two Step &amp; Hello Posts</button>
-            </div>
-          </fieldset>
-
-          <div style="text-align: center; margin-top: 15px; font-size: 12px;">
-            <a href="/blog" target="_blank">Open Public Blog in New Tab &raquo;</a>
-          </div>
-        </div>
+    <!-- MANAGE PREVIOUS DYNAMIC POSTS -->
+    <div class="panel-window">
+      <h3 style="color: #ffff00; margin-top: 0;">Manage Dynamic Posts</h3>
+      <p style="font-size: 12px; color: #aaa;">Below are posts loaded from Firebase. You can delete test or unwanted posts here.</p>
+      <div id="existing-posts-list">
+        <font color="#8888aa">Loading posts...</font>
       </div>
     </div>
 
     <!-- FIREBASE MODULE SCRIPT -->
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-      import { getDatabase, ref, set, remove, onValue } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
+      import { getDatabase, ref, push, remove, onValue } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
 
       const firebaseConfig = {
         apiKey: "AIzaSyBg56pode30fZyUd4Rcr8XHfXmc7rKJIgw",
@@ -204,115 +141,88 @@
       const app = initializeApp(firebaseConfig);
       const db = getDatabase(app);
 
-      // Simple PIN security (Default is: 360). You can change this to anything you want!
-      const ADMIN_PIN = "360";
+      // Auto-populate today's date formatted like M/D/YY
+      const today = new Date();
+      const formattedDate = `${today.getMonth() + 1}/${today.getDate()}/${String(today.getFullYear()).slice(-2)}`;
+      document.getElementById("date").value = formattedDate;
 
-      window.checkAuth = function() {
-        const val = document.getElementById("admin-pass").value;
-        if (val === ADMIN_PIN) {
-          document.getElementById("auth-box").style.display = "none";
-          document.getElementById("admin-main").style.display = "block";
-          loadAdminPosts();
-        } else {
-          alert("Incorrect Passcode! Access Denied.");
-        }
-      };
+      // Handle Post Publishing
+      window.publishPost = function(event) {
+        event.preventDefault();
+        const submitBtn = document.getElementById("submit-btn");
+        const statusMsg = document.getElementById("status-msg");
 
-      // Publish New Post
-      window.publishNewPost = function() {
-        const title = document.getElementById("post-title").value.trim();
-        const author = document.getElementById("post-author").value.trim() || "TomatoCan360 Owner";
-        let date = document.getElementById("post-date").value.trim();
-        const badge = document.getElementById("post-badge").value;
-        const body = document.getElementById("post-body").value.trim();
+        const title = document.getElementById("title").value.trim();
+        const author = document.getElementById("author").value.trim() || "TomatoCan360 Owner";
+        const date = document.getElementById("date").value.trim() || formattedDate;
+        const isSuperFresh = document.getElementById("super-fresh").checked;
+        const content = document.getElementById("content").value.trim();
 
-        if (!date) {
-          const d = new Date();
-          date = `${d.getMonth() + 1}/${d.getDate()}/${String(d.getFullYear()).slice(-2)}`;
+        if (!title || !content) {
+          alert("Please provide both a title and content!");
+          return;
         }
 
-        // Generate unique clean ID
-        const newPostId = "post-" + Date.now();
+        submitBtn.disabled = true;
+        statusMsg.innerHTML = '<font color="#ffff00">Publishing post...</font>';
 
-        const postData = {
-          id: newPostId,
+        push(ref(db, "posts"), {
           title: title,
           author: author,
           date: date,
-          badge: badge,
-          body: body,
+          isSuperFresh: isSuperFresh,
+          content: content,
           timestamp: Date.now()
-        };
-
-        set(ref(db, `posts/${newPostId}`), postData)
-          .then(() => {
-            alert("Post published successfully!");
-            document.getElementById("post-title").value = "";
-            document.getElementById("post-body").value = "";
-            document.getElementById("post-date").value = "";
-          })
-          .catch(err => alert("Error publishing: " + err.message));
+        }).then(() => {
+          statusMsg.innerHTML = '<font color="#00ff00">SUCCESS: Post has been published to the blog!</font>';
+          document.getElementById("title").value = "";
+          document.getElementById("content").value = "";
+          submitBtn.disabled = false;
+        }).catch((err) => {
+          statusMsg.innerHTML = `<font color="#ff3333">Error: ${err.message}</font>`;
+          submitBtn.disabled = false;
+        });
       };
 
-      // Load and list posts with a delete button
-      function loadAdminPosts() {
-        const listDiv = document.getElementById("admin-posts-list");
-        onValue(ref(db, "posts"), (snapshot) => {
-          listDiv.innerHTML = "";
-          if (!snapshot.exists()) {
-            listDiv.innerHTML = "<em>No posts found in database.</em>";
-            return;
-          }
+      // Realtime list of dynamic posts with delete button
+      const postsContainer = document.getElementById("existing-posts-list");
+      onValue(ref(db, "posts"), (snapshot) => {
+        postsContainer.innerHTML = "";
 
-          const posts = snapshot.val();
-          Object.keys(posts).forEach((key) => {
-            const p = posts[key];
-            const row = document.createElement("div");
-            row.className = "post-item-row";
-            row.innerHTML = `
-              <div>
-                <b>${p.title}</b> <span style="color: #666; font-size: 11px;">(${p.date || 'No date'}) - ID: ${p.id || key}</span>
-              </div>
-              <div>
-                <button type="button" class="btn-danger" onclick="deletePost('${p.id || key}')">Delete</button>
-              </div>
-            `;
-            listDiv.appendChild(row);
-          });
-        });
-      }
-
-      // Delete post
-      window.deletePost = function(postId) {
-        if (confirm(`Are you sure you want to delete post "${postId}"?`)) {
-          remove(ref(db, `posts/${postId}`))
-            .then(() => alert("Deleted!"))
-            .catch(err => alert("Error: " + err.message));
+        if (!snapshot.exists()) {
+          postsContainer.innerHTML = '<font color="#8888aa">No dynamic posts yet.</font>';
+          return;
         }
-      };
 
-      // Re-seed original 2 posts if ever needed
-      window.restoreDefaults = function() {
-        if (!confirm("Restore the default Two Step and Hello posts?")) return;
-        set(ref(db, "posts/post-twostep"), {
-          id: "post-twostep",
-          title: "Two Step Street View!",
-          date: "9/7/26",
-          author: "TomatoCan360 Owner",
-          badge: "SUPER FRESH",
-          body: "Yesterday I did street view (Car and Trekker!) in this new development called Two Step (The downtown was REALLY cool!).\nI uploaded it on Mapillary yesterday but I'm uploading it to street view studio rn!",
-          timestamp: 1788739200000
+        snapshot.forEach((child) => {
+          const postKey = child.key;
+          const post = child.val();
+
+          const item = document.createElement("div");
+          item.className = "post-item";
+          item.innerHTML = `
+            <table width="100%">
+              <tr>
+                <td>
+                  <b style="color: #00ffff;">${post.title}</b> 
+                  <span style="color: #c0c0c0; font-size: 12px;">(${post.date}) - by ${post.author}</span>
+                </td>
+                <td align="right">
+                  <button class="delete-btn" onclick="deletePost('${postKey}')">Delete</button>
+                </td>
+              </tr>
+            </table>
+          `;
+          postsContainer.prepend(item);
         });
-        set(ref(db, "posts/post-hello-1"), {
-          id: "post-hello-1",
-          title: "Hello!",
-          date: "9/7/26",
-          author: "TomatoCan360 Owner",
-          badge: "",
-          body: "yo yo yo HELLO! this is the new blog ill put updates and photos and such here when I can and when I do!",
-          timestamp: 1788730000000
-        });
-        alert("Restored default posts!");
+      });
+
+      window.deletePost = function(postKey) {
+        if (confirm("Are you sure you want to delete this post?")) {
+          remove(ref(db, `posts/${postKey}`)).catch((err) => {
+            alert("Error deleting post: " + err.message);
+          });
+        }
       };
     </script>
   </body>
