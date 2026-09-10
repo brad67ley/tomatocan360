@@ -246,12 +246,102 @@
 
             <hr size="3" width="90%" color="#c0c0c0" />
 
-            <!-- CONTAINER FOR ALL DYNAMIC & PRESERVED BLOG POSTS -->
-            <div id="posts-container">
-              <center style="padding: 40px;">
-                <font color="#00ffff" size="3">Loading latest posts...</font>
-              </center>
+            <!-- CONTAINER FOR NEW DYNAMIC POSTS FROM FIREBASE -->
+            <div id="dynamic-posts-container"></div>
+
+            <!-- BLOG POST 1: TWO STEP (ORIGINAL PRESERVED) -->
+            <div class="blog-window" id="window-post-twostep">
+              <div class="blog-header-bar">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td><span class="post-title">Two Step Street View!</span></td>
+                    <td align="right"><span class="rainbow-date">Date: 9/7/26</span></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="padding-top: 6px;">
+                      <font size="2" color="#c0c0c0">
+                        Written by: <b style="color: #ffffff;">TomatoCan360 Owner</b>
+                        &nbsp;<span class="badge-super-fresh">SUPER FRESH</span>
+                      </font>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <div class="blog-body">
+                <p>
+                  Yesterday I did street view (Car and Trekker!) in this new development called Two Step (The downtown was REALLY cool!).
+                  I uploaded it on Mapillary yesterday but I'm uploading it to street view studio rn!
+                </p>
+              </div>
+
+              <!-- COMMENTS AREA (ID: post-twostep) -->
+              <div class="comment-section">
+                <div class="comment-title">Comments:</div>
+
+                <!-- Input form -->
+                <input type="text" id="author-input-post-twostep" class="comment-input" placeholder="Your Name (or leave blank for Anon)" size="30" />
+                <br />
+                <textarea id="comment-input-post-twostep" class="comment-input" rows="2" cols="65" placeholder="Write a comment..."></textarea>
+                <br />
+                <button type="button" class="comment-btn" onclick="submitComment('post-twostep')">Post Comment</button>
+
+                <!-- REAL COMMENTS LIST -->
+                <div id="comments-list-post-twostep" style="margin-top: 15px;">
+                  <font color="#8888aa" size="2">Loading comments...</font>
+                </div>
+              </div>
             </div>
+
+            <br />
+            <hr size="3" width="90%" color="#c0c0c0" />
+            <br />
+
+            <!-- BLOG POST 2: HELLO / FIRST POST (ORIGINAL PRESERVED) -->
+            <div class="blog-window" id="window-post-hello-1">
+              <div class="blog-header-bar">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td><span class="post-title">Hello!</span></td>
+                    <td align="right"><span class="rainbow-date">Date: 9/7/26</span></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="padding-top: 6px;">
+                      <font size="2" color="#c0c0c0">
+                        Written by: <b style="color: #ffffff;">TomatoCan360 Owner</b>
+                      </font>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <div class="blog-body">
+                <p>
+                  yo yo yo HELLO! this is the new blog ill put updates and photos and such here when I can and when I do!
+                </p>
+              </div>
+
+              <!-- COMMENTS AREA (ID: post-hello-1) -->
+              <div class="comment-section">
+                <div class="comment-title">Comments:</div>
+
+                <!-- Input form -->
+                <input type="text" id="author-input-post-hello-1" class="comment-input" placeholder="Your Name (or leave blank for Anon)" size="30" />
+                <br />
+                <textarea id="comment-input-post-hello-1" class="comment-input" rows="2" cols="65" placeholder="Write a comment..."></textarea>
+                <br />
+                <button type="button" class="comment-btn" onclick="submitComment('post-hello-1')">Post Comment</button>
+
+                <!-- REAL COMMENTS LIST -->
+                <div id="comments-list-post-hello-1" style="margin-top: 15px;">
+                  <font color="#8888aa" size="2">Loading comments...</font>
+                </div>
+              </div>
+            </div>
+
+            <br />
+            <hr size="3" width="90%" color="#c0c0c0" />
+            <br />
 
             <!-- FOOTER -->
             <table width="100%" border="0" cellpadding="10" bgcolor="#000040">
@@ -273,9 +363,9 @@
     <!-- FIREBASE MODULE SCRIPT -->
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-      import { getDatabase, ref, push, set, onValue, query, orderByChild, equalTo } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
+      import { getDatabase, ref, push, onValue, query, orderByChild, equalTo } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
 
-      // FIREBASE CONFIG
+      // YOUR FIREBASE CONFIG
       const firebaseConfig = {
         apiKey: "AIzaSyBg56pode30fZyUd4Rcr8XHfXmc7rKJIgw",
         authDomain: "tomatocan360-comments.firebaseapp.com",
@@ -297,29 +387,15 @@
         );
       }
 
-      // Preserve default existing posts exactly as they were
-      const DEFAULT_POSTS = {
-        "post-twostep": {
-          id: "post-twostep",
-          title: "Two Step Street View!",
-          date: "9/7/26",
-          author: "TomatoCan360 Owner",
-          badge: "SUPER FRESH",
-          body: "Yesterday I did street view (Car and Trekker!) in this new development called Two Step (The downtown was REALLY cool!).\nI uploaded it on Mapillary yesterday but I'm uploading it to street view studio rn!",
-          timestamp: 1788739200000
-        },
-        "post-hello-1": {
-          id: "post-hello-1",
-          title: "Hello!",
-          date: "9/7/26",
-          author: "TomatoCan360 Owner",
-          badge: "",
-          body: "yo yo yo HELLO! this is the new blog ill put updates and photos and such here when I can and when I do!",
-          timestamp: 1788730000000
-        }
-      };
+      // Convert newlines to breaks for blog post body
+      function formatBody(str) {
+        return escapeHTML(str).replace(/\n/g, "<br />");
+      }
 
-      // Set up comments listener for a post
+      // Keep track of comment listeners
+      const activeCommentListeners = new Set();
+
+      // Initialize comment listener for any given post
       function setupComments(postId) {
         const container = document.getElementById(`comments-list-${postId}`);
         if (!container) return;
@@ -337,6 +413,7 @@
           snapshot.forEach((child) => {
             const data = child.val();
             
+            // Verification logic
             let checkmark = "";
             let nameColor = "#00ffff";
 
@@ -348,6 +425,7 @@
               nameColor = "#ffff00";
             }
 
+            // Format timestamp
             let timeSent = "Recently";
             if (data.timestamp) {
               const dateObj = new Date(data.timestamp);
@@ -375,52 +453,49 @@
         });
       }
 
-      // Convert line breaks to paragraphs/breaks
-      function formatBody(text) {
-        return escapeHTML(text)
-          .split('\n\n')
-          .map(paragraph => `<p style="margin: 0 0 10px 0;">${paragraph.replace(/\n/g, '<br/>')}</p>`)
-          .join('');
-      }
+      // Initialize comments for original posts
+      setupComments("post-twostep");
+      setupComments("post-hello-1");
 
-      // Listen for posts in Realtime DB
-      const postsRef = ref(db, "posts");
-      onValue(postsRef, (snapshot) => {
-        const postsContainer = document.getElementById("posts-container");
+      // ==========================================
+      // REALTIME LISTENER FOR DYNAMIC POSTS
+      // ==========================================
+      const dynamicPostsContainer = document.getElementById("dynamic-posts-container");
 
-        // If no posts in DB yet, auto-seed the original posts so nothing is ever lost
-        if (!snapshot.exists()) {
-          set(ref(db, "posts/post-twostep"), DEFAULT_POSTS["post-twostep"]);
-          set(ref(db, "posts/post-hello-1"), DEFAULT_POSTS["post-hello-1"]);
-          return;
-        }
+      onValue(ref(db, "posts"), (snapshot) => {
+        dynamicPostsContainer.innerHTML = "";
 
-        const postsObj = snapshot.val();
-        // Convert to array and sort by timestamp descending (newest post at top)
-        const postsList = Object.keys(postsObj).map(key => ({
-          key,
-          ...postsObj[key]
-        })).sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+        if (!snapshot.exists()) return;
 
-        postsContainer.innerHTML = "";
+        const postsArray = [];
+        snapshot.forEach((child) => {
+          postsArray.push({
+            id: child.key,
+            ...child.val()
+          });
+        });
 
-        postsList.forEach((post) => {
-          const postId = post.id || post.key;
-          const badgeHtml = post.badge ? `&nbsp;<span class="badge-super-fresh">${escapeHTML(post.badge)}</span>` : '';
+        // Newest posts first
+        postsArray.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+
+        postsArray.forEach((post) => {
+          const freshBadge = post.isSuperFresh 
+            ? '&nbsp;<span class="badge-super-fresh">SUPER FRESH</span>' 
+            : '';
 
           const postHTML = `
-            <div class="blog-window" id="window-${postId}">
+            <div class="blog-window" id="window-${post.id}">
               <div class="blog-header-bar">
                 <table width="100%" border="0" cellpadding="0" cellspacing="0">
                   <tr>
                     <td><span class="post-title">${escapeHTML(post.title)}</span></td>
-                    <td align="right"><span class="rainbow-date">Date: ${escapeHTML(post.date || '')}</span></td>
+                    <td align="right"><span class="rainbow-date">Date: ${escapeHTML(post.date || 'Recent')}</span></td>
                   </tr>
                   <tr>
                     <td colspan="2" style="padding-top: 6px;">
                       <font size="2" color="#c0c0c0">
                         Written by: <b style="color: #ffffff;">${escapeHTML(post.author || 'TomatoCan360 Owner')}</b>
-                        ${badgeHtml}
+                        ${freshBadge}
                       </font>
                     </td>
                   </tr>
@@ -428,39 +503,37 @@
               </div>
 
               <div class="blog-body">
-                ${formatBody(post.body || '')}
+                <p>${formatBody(post.content)}</p>
               </div>
 
-              <!-- COMMENTS AREA (ID: ${postId}) -->
+              <!-- COMMENTS AREA FOR DYNAMIC POST -->
               <div class="comment-section">
                 <div class="comment-title">Comments:</div>
 
-                <!-- Input form -->
-                <input type="text" id="author-input-${postId}" class="comment-input" placeholder="Your Name (or leave blank for Anon)" size="30" />
+                <input type="text" id="author-input-${post.id}" class="comment-input" placeholder="Your Name (or leave blank for Anon)" size="30" />
                 <br />
-                <textarea id="comment-input-${postId}" class="comment-input" rows="2" cols="65" placeholder="Write a comment..."></textarea>
+                <textarea id="comment-input-${post.id}" class="comment-input" rows="2" cols="65" placeholder="Write a comment..."></textarea>
                 <br />
-                <button type="button" class="comment-btn" onclick="submitComment('${postId}')">Post Comment</button>
+                <button type="button" class="comment-btn" onclick="submitComment('${post.id}')">Post Comment</button>
 
-                <!-- REAL COMMENTS LIST -->
-                <div id="comments-list-${postId}" style="margin-top: 15px;">
+                <div id="comments-list-${post.id}" style="margin-top: 15px;">
                   <font color="#8888aa" size="2">Loading comments...</font>
                 </div>
               </div>
             </div>
-
             <br />
             <hr size="3" width="90%" color="#c0c0c0" />
             <br />
           `;
 
-          postsContainer.insertAdjacentHTML("beforeend", postHTML);
-          // Attach real-time comment listeners
-          setupComments(postId);
+          dynamicPostsContainer.insertAdjacentHTML("beforeend", postHTML);
+          setupComments(post.id);
         });
       });
 
-      // Submit comment per post
+      // ==========================================
+      // SUBMIT COMMENT FUNCTION
+      // ==========================================
       window.submitComment = function(postId) {
         const nameInputEl = document.getElementById(`author-input-${postId}`);
         const textInputEl = document.getElementById(`comment-input-${postId}`);
@@ -494,7 +567,7 @@
         });
       };
 
-      // Reply helper targeted to specific post
+      // Reply helper
       window.replyTo = function(postId, authorName) {
         const input = document.getElementById(`comment-input-${postId}`);
         if (input) {
